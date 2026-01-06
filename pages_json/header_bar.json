@@ -1,0 +1,128 @@
+{
+  "component": "header",
+  "layout": {
+    "type": "horizontal",
+    "alignment": "space-between",
+    "padding": "16px 48px",
+    "maxWidth": "100%",
+    "position": "fixed",
+    "top": 0
+  },
+  "content": {
+    "logo": {
+      "type": "image-text",
+      "icon": "droplet-icon",
+      "text": "Hyperland",
+      "link": "/"
+    },
+    "navigation": [
+      {
+        "label": "Get started",
+        "link": "/get-started",
+        "type": "link"
+      },
+      {
+        "label": "Wiki",
+        "link": "/wiki",
+        "type": "link"
+      },
+      {
+        "label": "Forums",
+        "link": "/forums",
+        "type": "link"
+      },
+      {
+        "label": "Account",
+        "link": "/account",
+        "type": "link"
+      },
+      {
+        "label": "Hall of fame",
+        "link": "/hall-of-fame",
+        "type": "link"
+      },
+      {
+        "label": "News",
+        "link": "/news",
+        "type": "link"
+      },
+      {
+        "label": "Plugins",
+        "link": "/plugins",
+        "type": "link"
+      }
+    ],
+    "socialIcons": [
+      {
+        "platform": "discord",
+        "icon": "discord-icon",
+        "link": "#"
+      },
+      {
+        "platform": "github",
+        "icon": "github-icon",
+        "link": "#"
+      },
+      {
+        "platform": "custom",
+        "icon": "diamond-icon",
+        "link": "#"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Start Your Project",
+        "type": "secondary",
+        "link": "/contact"
+      },
+      {
+        "text": "View Portfolio",
+        "type": "primary",
+        "link": "/portfolio"
+      }
+    ]
+  },
+  "styles": {
+    "colors": {
+      "background": "#0a2e3d",
+      "logoIcon": "#3dd9d9",
+      "logoText": "#ffffff",
+      "navLinks": "#ffffff",
+      "navLinksHover": "#3dd9d9",
+      "socialIcons": "#ffffff",
+      "socialIconsHover": "#3dd9d9",
+      "buttonSecondaryBg": "transparent",
+      "buttonSecondaryBorder": "#3dd9d9",
+      "buttonSecondaryText": "#3dd9d9",
+      "buttonPrimaryBg": "#3dd9d9",
+      "buttonPrimaryText": "#0a2e3d"
+    },
+    "typography": {
+      "fontFamily": "Poppins, Inter, sans-serif",
+      "logo": {
+        "fontSize": "20px",
+        "fontWeight": "600"
+      },
+      "navLinks": {
+        "fontSize": "15px",
+        "fontWeight": "400"
+      },
+      "buttons": {
+        "fontSize": "14px",
+        "fontWeight": "500"
+      }
+    },
+    "spacing": {
+      "navGap": "32px",
+      "socialIconsGap": "16px",
+      "buttonsGap": "12px",
+      "buttonPadding": "10px 24px",
+      "logoIconMargin": "0 8px 0 0"
+    },
+    "effects": {
+      "buttonSecondaryBorderRadius": "8px",
+      "buttonPrimaryBorderRadius": "8px",
+      "transition": "all 0.3s ease"
+    }
+  }
+}
