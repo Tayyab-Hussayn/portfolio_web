@@ -1,0 +1,310 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+.techspirex-faq-section {
+    background-color: #E3F2FB;
+    padding: 80px 20px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.faq-container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Left Column - FAQ Accordion */
+.faq-content {
+    padding-right: 20px;
+}
+
+.faq-main-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #453478;
+    line-height: 1.3;
+    margin-bottom: 48px;
+    padding-left: 20px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide default radio buttons */
+.faq-accordion input[type="radio"] {
+    display: none;
+}
+
+.faq-item {
+    border-bottom: 1px solid #E0E4E8;
+    padding: 24px 0;
+}
+
+.faq-item:first-of-type {
+    border-top: 1px solid #E0E4E8;
+}
+
+.faq-question-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #1A1A2E;
+    transition: color 0.3s ease;
+    user-select: none;
+    padding-left: 20px
+}
+
+.faq-question-label:hover {
+    color: #453478;
+}
+
+.faq-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faq-chevron svg {
+    width: 16px;
+    height: 16px;
+    stroke: #4A4A4A;
+    transition: stroke 0.3s ease;
+}
+
+/* Answer hidden by default */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4A4A4A;
+    padding-left: 20px;
+}
+
+/* When radio is checked - show answer and rotate chevron */
+.faq-accordion input[type="radio"]:checked + .faq-question-label {
+    color: #453478;
+}
+
+.faq-accordion input[type="radio"]:checked + .faq-question-label .faq-chevron {
+    transform: rotate(90deg);
+}
+
+.faq-accordion input[type="radio"]:checked + .faq-question-label .faq-chevron svg {
+    stroke: #453478;
+}
+
+.faq-accordion input[type="radio"]:checked ~ .faq-answer {
+    max-height: 500px;
+    padding-top: 16px;
+}
+
+/* Right Column - Image */
+.faq-image-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(69, 52, 120, 0.12);
+}
+
+.faq-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .faq-grid {
+        gap: 60px;
+    }
+
+    .faq-main-heading {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .faq-question-label {
+        font-size: 17px;
+    }
+
+    .faq-answer {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .techspirex-faq-section {
+        padding: 60px 20px;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .faq-content,
+    .faq-image-wrapper {
+        padding: 0;
+    }
+
+    .faq-main-heading {
+        font-size: 32px;
+        margin-bottom: 36px;
+    }
+
+    .faq-item {
+        padding: 20px 0;
+    }
+
+    .faq-question-label {
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        font-size: 15px;
+    }
+
+    .faq-image {
+        border-radius: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .techspirex-faq-section {
+        padding: 50px 16px;
+    }
+
+    .faq-main-heading {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+
+    .faq-question-label {
+        font-size: 15px;
+        gap: 12px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+
+    .faq-chevron {
+        width: 20px;
+        height: 20px;
+    }
+
+    .faq-chevron svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+</style>
+
+<section class="techspirex-faq-section">
+    <div class="faq-container">
+        <div class="faq-grid">
+            <!-- Left Column: FAQ Accordion -->
+            <div class="faq-content">
+                <h2 class="faq-main-heading">Frequently Asked Questions</h2>
+
+                <div class="faq-accordion">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <input type="radio" name="faq-accordion" id="faq-1">
+                        <label for="faq-1" class="faq-question-label">
+                            <span>What is the typical project timeline for web development?</span>
+                            <span class="faq-chevron">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="faq-answer">
+                            A standard website project typically takes 6-8 weeks from discovery to launch. However, the timeline can vary based on the project's complexity, custom features, and client feedback cycles.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <input type="radio" name="faq-accordion" id="faq-2">
+                        <label for="faq-2" class="faq-question-label">
+                            <span>Do you offer ongoing support and maintenance after a project is completed?</span>
+                            <span class="faq-chevron">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="faq-answer">
+                            Yes, we offer a range of flexible support and maintenance packages to ensure your digital assets remain secure, updated, and optimized for performance long after the initial launch.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <input type="radio" name="faq-accordion" id="faq-3">
+                        <label for="faq-3" class="faq-question-label">
+                            <span>How does Techspirex approach UI/UX design?</span>
+                            <span class="faq-chevron">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="faq-answer">
+                            Our design process is user-centric, starting with in-depth research and wireframing. We focus on creating intuitive, engaging, and aesthetically pleasing interfaces that drive user satisfaction and conversion.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <input type="radio" name="faq-accordion" id="faq-4">
+                        <label for="faq-4" class="faq-question-label">
+                            <span>Can you integrate third-party services and APIs into our application?</span>
+                            <span class="faq-chevron">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="faq-answer">
+                            Absolutely. We specialize in seamless third-party integrations, whether it's payment gateways, CRM systems, marketing automation tools, or custom APIs to extend your application's functionality.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Image -->
+            <div class="faq-image-wrapper">
+                <img src="https://techspirex.com/wp-content/uploads/2025/11/faq-img1.webp" 
+                     alt="Question mark in clouds representing FAQ solutions" 
+                     class="faq-image">
+            </div>
+        </div>
+    </div>
+</section>
