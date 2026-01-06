@@ -1,0 +1,107 @@
+{
+  "component": "ai-project-matcher",
+  "layout": {
+    "type": "two-column-split",
+    "padding": "100px 60px",
+    "maxWidth": "1400px",
+    "background": "#2d1b4e",
+    "alignment": "center"
+  },
+  "content": {
+    "leftColumn": {
+      "heading": {
+        "main": "Meet ProjectFlow:",
+        "sub": "AI-powered project matching system"
+      },
+      "description": [
+        "Tell us your project requirements. Our intelligent system analyzes your needs and instantly connects you with perfectly matched web solutions.",
+        "All at a fraction of the time of traditional project scoping."
+      ],
+      "cta": {
+        "text": "Learn more",
+        "link": "/project-flow",
+        "style": "primary"
+      }
+    },
+    "rightColumn": {
+      "type": "interactive-mockup-image",
+      "imageSrc": "project-flow-interface.png",
+      "imageAlt": "AI Project Matching Interface",
+      "imagePromptForAI": "Generate a modern UI mockup image with dark purple gradient background (#2d1b4e to #1a0d2e). Show an AI-powered project matching interface with these elements: 1) Top section: User avatar with speech bubble saying 'I need an e-commerce website with REACT and STRIPE integration' (highlight 'REACT' in yellow and 'STRIPE' in purple badge style). 2) Top-right corner: Small 'projectflow.ai' branding. 3) Middle: Pink/magenta notification box saying 'Perfect Match! Sending you qualified project proposal now.' 4) Bottom section: White card titled 'Your Project Proposal' containing 3 developer cards with avatars, names (like 'Alex Chen', 'Sarah Kumar', 'Mike Stevens'), status badges ('AVAILABLE', 'READY TO START'), expertise tags ('React', 'Stripe', 'E-commerce'), and checkmark/close icons. 5) Floating elements: Small 'Recruiter' badge, heart icon, searching indicator with avatars. 6) Overall style: Modern SaaS interface, glassmorphism effects, rounded corners, professional gradient purple/pink color scheme, clean typography. Make it look like a sophisticated AI recruitment/project matching dashboard."
+    },
+    "decorativeElements": {
+      "dots": {
+        "display": true,
+        "position": "center-vertical",
+        "color": "rgba(255, 255, 255, 0.1)"
+      },
+      "icons": [
+        {
+          "type": "thumbs-up",
+          "position": "left-bottom",
+          "color": "#ff4081"
+        },
+        {
+          "type": "brackets",
+          "position": "center-connector",
+          "color": "#ff4081"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "colors": {
+      "background": "#2d1b4e",
+      "headingMain": "#ffffff",
+      "headingSub": "#ffffff",
+      "description": "rgba(255, 255, 255, 0.85)",
+      "ctaBackground": "#ffffff",
+      "ctaText": "#2d1b4e",
+      "ctaHover": "#f0f0f0",
+      "accentPink": "#ff4081",
+      "accentPurple": "#453478"
+    },
+    "typography": {
+      "fontFamily": "Poppins, Inter, sans-serif",
+      "heading": {
+        "fontSize": "48px",
+        "fontWeight": "700",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.5px"
+      },
+      "description": {
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "1.7",
+        "marginBottom": "16px"
+      },
+      "cta": {
+        "fontSize": "15px",
+        "fontWeight": "600"
+      }
+    },
+    "spacing": {
+      "columnGap": "80px",
+      "headingMarginBottom": "32px",
+      "descriptionGap": "20px",
+      "ctaPadding": "14px 32px",
+      "ctaMarginTop": "32px"
+    },
+    "effects": {
+      "ctaBorderRadius": "8px",
+      "ctaShadow": "0 4px 16px rgba(255, 255, 255, 0.2)",
+      "mockupShadow": "0 20px 60px rgba(0, 0, 0, 0.3)",
+      "transition": "all 0.3s ease",
+      "ctaHoverTransform": "translateY(-2px)"
+    }
+  },
+  "responsive": {
+    "mobile": {
+      "layout": "stacked",
+      "headingFontSize": "36px",
+      "padding": "60px 24px",
+      "columnGap": "48px"
+    }
+  },
+  "aiImageGenerationNote": "IMPORTANT FOR VIBE CODE AI: Generate the right-side mockup image exactly as described in 'imagePromptForAI' field. The image must show a modern AI project matching interface with purple gradient background, user input bubble, AI response notification, and project proposal cards with developer profiles. Style should be professional, clean, and match the SaaS/tech aesthetic with proper badges, tags, and interactive elements visible."
+}
