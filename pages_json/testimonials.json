@@ -1,0 +1,162 @@
+{
+  "component": "testimonials-section",
+  "layout": {
+    "type": "centered-content",
+    "padding": "80px 40px",
+    "maxWidth": "1200px",
+    "background": "#ffffff",
+    "borderRadius": "24px"
+  },
+  "content": {
+    "badge": {
+      "text": "Client Success Stories",
+      "display": true
+    },
+    "heading": {
+      "main": "Trusted by leaders",
+      "sub": "from various industries"
+    },
+    "description": "Learn why businesses trust our web development solutions to build powerful digital experiences.",
+    "button": {
+      "text": "Read Success Stories",
+      "icon": "arrow-right",
+      "link": "/case-studies"
+    },
+    "images": {
+      "layout": "scattered-grid",
+      "items": [
+        {
+          "id": 1,
+          "src": "client-avatar-1.jpg",
+          "alt": "Business professional",
+          "position": "top-left",
+          "size": "medium"
+        },
+        {
+          "id": 2,
+          "src": "client-avatar-2.jpg",
+          "alt": "Tech leader",
+          "position": "top-center-left",
+          "size": "large"
+        },
+        {
+          "id": 3,
+          "src": "client-avatar-3.jpg",
+          "alt": "Startup founder",
+          "position": "top-center",
+          "size": "medium"
+        },
+        {
+          "id": 4,
+          "src": "client-avatar-4.jpg",
+          "alt": "Product manager",
+          "position": "top-center-right",
+          "size": "large"
+        },
+        {
+          "id": 5,
+          "src": "client-avatar-5.jpg",
+          "alt": "CTO",
+          "position": "top-right-center",
+          "size": "medium"
+        },
+        {
+          "id": 6,
+          "src": "client-avatar-6.jpg",
+          "alt": "Marketing director",
+          "position": "top-right",
+          "size": "large"
+        },
+        {
+          "id": 7,
+          "src": "client-avatar-7.jpg",
+          "alt": "Business owner",
+          "position": "middle-left",
+          "size": "large"
+        },
+        {
+          "id": 8,
+          "src": "client-avatar-8.jpg",
+          "alt": "Operations manager",
+          "position": "middle-right",
+          "size": "medium"
+        },
+        {
+          "id": 9,
+          "src": "client-avatar-9.jpg",
+          "alt": "VP of technology",
+          "position": "bottom-left",
+          "size": "small"
+        },
+        {
+          "id": 10,
+          "src": "client-avatar-10.jpg",
+          "alt": "Project lead",
+          "position": "bottom-center",
+          "size": "medium"
+        },
+        {
+          "id": 11,
+          "src": "client-avatar-11.jpg",
+          "alt": "Digital strategist",
+          "position": "bottom-right",
+          "size": "large"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "colors": {
+      "background": "#ffffff",
+      "badgeBackground": "#f8f8f8",
+      "badgeText": "#666666",
+      "headingMain": "#000000",
+      "headingSub": "#999999",
+      "description": "#333333",
+      "buttonBackground": "#000000",
+      "buttonText": "#ffffff",
+      "buttonHover": "#453478",
+      "imageBorder": "#ffffff",
+      "shadow": "rgba(0, 0, 0, 0.08)"
+    },
+    "typography": {
+      "fontFamily": "Poppins, Inter, sans-serif",
+      "badge": {
+        "fontSize": "13px",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.5px"
+      },
+      "heading": {
+        "fontSize": "56px",
+        "fontWeight": "700",
+        "lineHeight": "1.2",
+        "letterSpacing": "-1px"
+      },
+      "description": {
+        "fontSize": "18px",
+        "fontWeight": "400",
+        "lineHeight": "1.6"
+      },
+      "button": {
+        "fontSize": "15px",
+        "fontWeight": "600"
+      }
+    },
+    "spacing": {
+      "badgeMarginBottom": "24px",
+      "headingMarginBottom": "20px",
+      "descriptionMarginBottom": "40px",
+      "buttonPadding": "16px 32px",
+      "imageGap": "16px"
+    },
+    "effects": {
+      "containerShadow": "0 20px 60px rgba(0, 0, 0, 0.08)",
+      "imageBorderRadius": "16px",
+      "imageBoxShadow": "0 4px 12px rgba(0, 0, 0, 0.1)",
+      "buttonBorderRadius": "50px",
+      "buttonTransition": "all 0.3s ease",
+      "imageHoverScale": "1.05"
+    }
+  }
+}
