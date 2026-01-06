@@ -1,0 +1,156 @@
+"use client";
+
+import { Container } from "@/components/ui/Container";
+import { motion } from "framer-motion";
+import {
+    Atom,
+    Layers,
+    Palette,
+    Film,
+    Server,
+    Code2,
+    Database,
+    Cpu,
+    Globe
+} from "lucide-react";
+
+const techData = {
+    topTier: [
+        {
+            icon: Atom,
+            title: "Modern React Ecosystem",
+            desc: "React.js, Next.js, Hooks, Context",
+            color: "bg-blue-500"
+        },
+        {
+            icon: Layers,
+            title: "Vue Framework",
+            desc: "Vue.js, Nuxt.js, Composition API",
+            color: "bg-emerald-500"
+        },
+        {
+            icon: Palette,
+            title: "Utility-First CSS",
+            desc: "Tailwind, SCSS, Styled Components",
+            color: "bg-cyan-500"
+        },
+        {
+            icon: Film,
+            title: "Advanced Animations",
+            desc: "GSAP, Framer Motion, Three.js",
+            color: "bg-purple-500"
+        }
+    ],
+    bottomTier: [
+        {
+            icon: Server,
+            title: "Node.js Runtime",
+            desc: "Express, Nest.js, Socket.io",
+            color: "bg-green-600"
+        },
+        {
+            icon: Code2,
+            title: "Python Frameworks",
+            desc: "FastAPI, Flask, Django",
+            color: "bg-yellow-600"
+        },
+        {
+            icon: Database,
+            title: "Database Management",
+            desc: "PostgreSQL, MongoDB, Redis",
+            color: "bg-teal-600"
+        },
+        {
+            icon: Cpu,
+            title: "API & Integration",
+            desc: "REST, GraphQL, Microservices",
+            color: "bg-orange-500"
+        }
+    ]
+};
+
+export function TechStack() {
+    return (
+        <section className="py-24 bg-gray-50 overflow-hidden">
+            <Container>
+                <div className="text-center mb-20">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl font-bold font-heading mb-4 text-gray-900"
+                    >
+                        Full-Stack Capabilities
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-gray-600 max-w-2xl mx-auto"
+                    >
+                        Bridging the gap between powerful backend systems and immersive frontend experiences.
+                    </motion.p>
+                </div>
+
+                <div className="relative max-w-5xl mx-auto">
+                    {/* Connection Lines (Simplified Visuals) */}
+                    <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-40 border-l border-r border-gray-200 hidden md:block rounded-xl border-t border-b border-dashed opacity-50 -z-0 mx-20" />
+
+                    {/* Top Tier: Frontend */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 relative z-10">
+                        {techData.topTier.map((item, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <div className={`w-12 h-12 ${item.color} rounded-xl flex items-center justify-center text-white mb-4 shadow-md`}>
+                                    <item.icon size={24} />
+                                </div>
+                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="text-sm text-gray-500">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Central Node */}
+                    <div className="flex justify-center mb-16 relative z-10">
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="bg-primary text-white p-8 rounded-full shadow-2xl relative z-10 w-48 h-48 flex flex-col items-center justify-center text-center border-8 border-white ring-4 ring-gray-100"
+                        >
+                            <Globe size={40} className="mb-2" />
+                            <h3 className="font-bold text-lg leading-tight">Full-Stack<br />Architecture</h3>
+                        </motion.div>
+                    </div>
+
+                    {/* Bottom Tier: Backend */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                        {techData.bottomTier.map((item, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 + idx * 0.1 }}
+                                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <div className={`w-12 h-12 ${item.color} rounded-xl flex items-center justify-center text-white mb-4 shadow-md`}>
+                                    <item.icon size={24} />
+                                </div>
+                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="text-sm text-gray-500">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Container>
+        </section>
+    );
+}
