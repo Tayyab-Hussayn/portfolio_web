@@ -16,7 +16,7 @@ export function ContactCTA() {
                 <h2 className="text-4xl md:text-5xl font-bold font-heading mb-6 tracking-tight">
                     Ready to launch your <br /> next big project?
                 </h2>
-                <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 font-light">
+                <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light">
                     Let's collaborate to build a digital experience that converts visitors into customers and scales with your business.
                 </p>
 

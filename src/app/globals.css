@@ -3,7 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #453478; /* Deep Purple */
+  --primary: #453478;
+  /* Deep Purple */
   --font-poppins: 'Poppins', sans-serif;
   --font-inter: 'Inter', sans-serif;
 }
@@ -16,17 +17,9 @@
   --font-heading: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Enforcing light theme primarily as per requirements ("Theme: Pure White Background"), 
-       but keeping structure if dark mode is needed later. 
-       For now, overriding to match light theme or specific dark mode requirements if any. 
-       Prompt said "Theme: Pure White Background", so disabling auto dark mode switch for now 
-       or making it consistent. */
-    --background: #ffffff; 
-    --foreground: #171717;
-  }
-}
+/* Dark mode overrides if needed, but keeping light theme dominant as requested */
+/* --background: #0a0a0a; */
+/* --foreground: #ededed; */
 
 body {
   background: var(--background);
@@ -34,6 +27,11 @@ body {
   font-family: var(--font-inter);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }

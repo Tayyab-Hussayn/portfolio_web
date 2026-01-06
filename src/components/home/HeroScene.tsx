@@ -23,10 +23,10 @@ export function HeroScene() {
                 if (mounted && canvasRef.current) {
                     instanceRef.current = TubesCursor(canvasRef.current, {
                         tubes: {
-                            colors: ["#453478", "#6c5ce7", "#a29bfe"], // Brand colors: Deep Purple & variants
+                            colors: ["#2d1b4e", "#453478", "#6c5ce7"], // Darker colors for contrast on light bg
                             lights: {
                                 intensity: 200,
-                                colors: ["#21d4fd", "#b721ff", "#f4d03f", "#11cdef"] // Keep light colors for vibrancy or adjust? Keeping for now.
+                                colors: ["#21d4fd", "#6c5ce7", "#3498db", "#ffffff"]
                             }
                         }
                     });

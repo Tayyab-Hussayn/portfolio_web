@@ -1,9 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import type { ComponentProps } from "react";
-
-export function cn(...inputs: (string | undefined | null | false)[]) {
-    return inputs.filter(Boolean).join(" ");
-}
+import { cn } from "@/lib/utils";
 
 export function Button({
     className,
@@ -19,22 +16,26 @@ export function Button({
     const Comp = asChild ? Slot : "button";
 
     const variants = {
-        primary: "bg-primary text-white hover:opacity-90",
+        // Primary: Brand color background, white text.
+        primary: "bg-primary text-white hover:bg-primary/90 shadow-sm",
+        // Secondary: Light gray background, dark text (good for light mode).
         secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
-        outline: "border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900",
+        // Outline: White background with border, good for neutral actions.
+        outline: "border border-gray-200 bg-white text-gray-900 hover:bg-gray-100",
+        // Ghost: Transparent.
         ghost: "hover:bg-gray-100 hover:text-gray-900",
     };
 
     const sizes = {
         sm: "h-9 px-3 text-xs",
-        md: "h-10 px-4 py-2",
-        lg: "h-11 px-8",
+        md: "h-11 px-6 py-2", // Increased default size slightly
+        lg: "h-12 px-8 text-lg",
     };
 
     return (
         <Comp
             className={cn(
-                "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+                "inline-flex items-center justify-center whitespace-nowrap rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
                 variants[variant],
                 sizes[size],
                 className

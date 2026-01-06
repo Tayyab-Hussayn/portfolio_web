@@ -8,9 +8,9 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function ClientProjects() {
     return (
-        <section className="py-24 bg-[#2d1b4e] text-white overflow-hidden relative">
+        <section className="py-24 bg-primary text-white overflow-hidden relative">
             {/* Background Elements */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#453478]/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-black/20 to-transparent pointer-events-none" />
 
             <Container className="relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -39,8 +39,8 @@ export function ClientProjects() {
 
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
                             {["Real-time AI Matching", "Next.js 14 Integration", "Automated Vetting", "Stripe Payments"].map((item) => (
-                                <li key={item} className="flex items-center gap-2 text-sm font-medium text-gray-200">
-                                    <CheckCircle2 className="text-pink-500" size={18} />
+                                <li key={item} className="flex items-center gap-2 text-sm font-medium text-blue-100">
+                                    <CheckCircle2 className="text-white" size={18} />
                                     {item}
                                 </li>
                             ))}
