@@ -58,6 +58,11 @@ const projects = [
     }
 ];
 
+export const metadata = {
+    title: "Portfolio Projects | Full-Stack Web Development",
+    description: "Explore my portfolio of custom web applications, mobile apps, and AI solutions built for global clients.",
+};
+
 export default function ProjectsPage() {
     const [activeCategory, setActiveCategory] = useState("All");
 
@@ -83,8 +88,8 @@ export default function ProjectsPage() {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat
-                                        ? "bg-primary text-white shadow-lg scale-105"
-                                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                    ? "bg-primary text-white shadow-lg scale-105"
+                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                                     }`}
                             >
                                 {cat}

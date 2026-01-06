@@ -39,6 +39,11 @@ const services = [
     }
 ];
 
+export const metadata = {
+    title: "Web Development Services & Pricing",
+    description: "Professional web development services including custom apps, e-commerce, and technical consulting. Transparent pricing and process.",
+};
+
 export default function ServicesPage() {
     return (
         <main className="min-h-screen bg-white">

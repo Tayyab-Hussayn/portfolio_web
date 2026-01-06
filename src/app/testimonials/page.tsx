@@ -59,6 +59,11 @@ const testimonials = [
     }
 ];
 
+export const metadata = {
+    title: "Client Testimonials & Reviews",
+    description: "Read what industry leaders and business owners say about working with me. 5-star reviews for web development excellence.",
+};
+
 export default function TestimonialsPage() {
     return (
         <main className="min-h-screen bg-white">

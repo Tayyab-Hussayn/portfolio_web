@@ -7,6 +7,11 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 
+export const metadata = {
+    title: "Contact Me | Hire a Full-Stack Developer",
+    description: "Get in touch to discuss your next web project. Available for freelance and contract work globally.",
+};
+
 export default function ContactPage() {
     return (
         <main className="min-h-screen bg-white">
