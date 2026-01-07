@@ -27,7 +27,7 @@ export default function AboutPage() {
                         <div className="relative">
                             <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl relative z-10">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1507238691126-3d9272b0e63b?q=80&w=1000&auto=format&fit=crop"
+                                    src="https://techspirex.com/wp-content/uploads/2025/01/img02-5-2.png"
                                     alt="Developer working"
                                     fill
                                     className="object-cover"

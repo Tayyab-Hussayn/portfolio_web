@@ -35,8 +35,8 @@ export function Header() {
         >
             <Container>
                 <div className="flex items-center justify-between h-20">
-                    <Link href="/" className="text-2xl font-bold font-heading text-primary">
-                        DevPortfolio<span className="text-gray-900">.</span>
+                    <Link href="/" className="text-2xl font-bold font-heading text-[#453478]">
+                        DevPortfolio<span className="text-[#453478]">.</span>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -45,7 +45,7 @@ export function Header() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
+                                className="text-sm font-medium text-black hover:text-primary transition-colors"
                             >
                                 {item.name}
                             </Link>

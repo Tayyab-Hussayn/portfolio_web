@@ -48,13 +48,13 @@ export function FAQ() {
               {faqs.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                  className="bg-gray rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50/50 transition-colors"
+                    className="w-full flex items-center justify-between p-4.5 text-left hover:bg-gray-50/50 transition-colors"
                   >
-                    <span className="text-lg font-medium text-gray-900 pr-4 font-['Inter']">{faq.question}</span>
+                    <span className="text-base font-medium text-gray-900 pr-4 font-['Inter']">{faq.question}</span>
                     <motion.span
                       className="text-gray-500 flex-shrink-0"
                       animate={{ rotate: openIndex === idx ? 90 : 0 }}

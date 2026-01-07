@@ -1,24 +1,21 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { HeroScene } from "./HeroScene";
 
 export function Hero() {
     return (
-        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-white">
-            {/* 3D Background - Cursor Effect */}
-            <div className="absolute inset-0 z-0">
-                <HeroScene />
-            </div>
+        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+            {/* Background Gradient - Subtle replacement for 3D effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#453478] via-white to-[#453478] pointer-events-none" />
 
             {/* Gradient Overlay for text readability if needed */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/80 pointer-events-none z-0" />
 
             {/* Content Overlay */}
-            <div className="relative z-10 w-full pointer-events-none">
+            <div className="relative z-10 w-full">
                 <Container>
                     <div className="flex flex-col items-center justify-center text-center gap-6">
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading uppercase leading-none tracking-tight text-primary drop-shadow-sm select-none">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading uppercase leading-none tracking-tight text-primary drop-shadow-sm">
                             Engineering <br />
                             Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Excellence</span>
                         </h1>
@@ -27,7 +24,7 @@ export function Hero() {
                             Full-Stack Expertise. Scalable Solutions. <br /> World-Class Performance for Global Enterprise.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4 mt-8 pointer-events-auto">
+                        <div className="flex flex-col sm:flex-row gap-4 mt-8">
                             <Button size="lg" className="bg-primary text-white hover:bg-primary/90 font-semibold text-lg px-8 border-none shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all" asChild>
                                 <Link href="/projects">View Projects</Link>
                             </Button>
