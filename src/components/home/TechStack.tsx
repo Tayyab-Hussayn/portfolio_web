@@ -72,7 +72,7 @@ export function TechStack() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-gray-600 max-w-2xl mx-auto"
+                        className="text-gray-600 max-w-2xl mx-auto pb-5"
                     >
                         We leverage a powerful and modern stack to build robust, scalable, and beautiful applications.
                     </motion.p>
@@ -110,7 +110,7 @@ export function TechStack() {
                             initial: { scale: 0, opacity: 0 },
                             animate: { scale: 1, opacity: 1, transition: { delay: 0.4, duration: 0.8, ease: "easeOut" } }
                         }}
-                        className="absolute w-[200px] h-[200px] border border-gray-300/10 rounded-full"
+                        className="absolute w-[200px] h-[200px] border border-gray-500/30 rounded-full"
                     />
 
                     {/* Central Element */}
