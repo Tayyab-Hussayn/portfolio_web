@@ -3,130 +3,98 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { CodeWindow } from "./CodeWindow";
-import { useTypewriter } from "@/hooks/useTypewriter";
+import { TerminalHUD } from "./TerminalHUD";
+import { SpotlightGrid } from "@/components/ui/SpotlightGrid";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react";
 
 export function Hero() {
-    const typewriterText = useTypewriter({
-        words: [
-            "Building Digital Excellence",
-            "Engineering Scalable Solutions",
-            "Crafting Modern web Experiences",
-            "Solving Complex Problems"
-        ],
-        typingSpeed: 100,
-        deletingSpeed: 50,
-        pauseTime: 2000,
-    });
-
     return (
-        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#0a0a0a] py-20 pt-32">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1a1a2e] via-[#0a0a0a] to-[#000000]" />
-            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505] py-20 pt-32 selection:bg-primary/30 selection:text-white">
 
-            {/* Ambient Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] opacity-30" />
+            <SpotlightGrid />
+
+            {/* Ambient background glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
 
             <Container className="relative z-10 w-full px-4 md:px-6">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-                    {/* Left Column: Introduction & CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="flex flex-col items-start gap-6 text-left"
-                    >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium">
+                    {/* Left Column: Typography & Info */}
+                    <div className="flex flex-col items-start gap-8 text-left">
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+                        >
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Available for hire
-                        </div>
+                            <span className="text-sm font-medium text-gray-300 tracking-wide">SYSTEM: ONLINE</span>
+                        </motion.div>
 
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading leading-tight tracking-tight text-white">
-                            I Am A <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                                Full-Stack
-                            </span> <br />
-                            Developer.
-                        </h1>
-
-                        <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
-                            Transforming complex challenges into elegant, high-performance web applications. I build the systems that power modern businesses.
-                        </p>
-
-                        <div className="flex flex-wrap gap-4 mt-4">
-                            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-14 text-base" asChild>
-                                <Link href="/projects">
-                                    View Projects <ArrowRight className="ml-2 w-4 h-4" />
-                                </Link>
-                            </Button>
-                            <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 hover:bg-white/5 text-white" asChild>
-                                <Link href="/contact">
-                                    <Mail className="mr-2 w-4 h-4" /> Contact Me
-                                </Link>
-                            </Button>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Column: Code Window Simulation */}
-                    <div className="relative perspective-[2000px]">
-                        {/* Floating Elements (Background decorations behind window) */}
                         <motion.div
-                            animate={{ y: [-10, 10, -10] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                            className="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/10 rounded-xl border border-blue-500/20 backdrop-blur-md z-0 rotate-12"
-                        />
-                        <motion.div
-                            animate={{ y: [10, -10, 10] }}
-                            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
-                            className="absolute -bottom-8 -left-8 w-32 h-32 bg-purple-500/10 rounded-full border border-purple-500/20 backdrop-blur-md z-0"
-                        />
-
-                        <CodeWindow className="z-10 relative">
-                            <div className="text-gray-300 font-mono text-sm md:text-base selection:bg-blue-500/30">
-                                <span className="text-pink-500">import</span> <span className="text-blue-400">{"{"}</span> <span className="text-yellow-400">Passion</span><span className="text-gray-400">,</span> <span className="text-yellow-400">Skill</span> <span className="text-blue-400">{"}"}</span> <span className="text-pink-500">from</span> <span className="text-green-400">"developer-life"</span><span className="text-gray-400">;</span>
-                                <br /><br />
-
-                                <span className="text-pink-500">const</span> <span className="text-blue-400">Portfolio</span> <span className="text-pink-500">=</span> <span className="text-yellow-400">()</span> <span className="text-pink-500">={">"}</span> <span className="text-yellow-400">{"{"}</span>
-                                <br />
-                                &nbsp;&nbsp;<span className="text-pink-500">const</span> <span className="text-blue-400">currentFocus</span> <span className="text-pink-500">=</span> <span className="text-yellow-400">{"{"}</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-300">mission:</span> <span className="text-green-400">"Evaluate. optimize. Deploy."</span><span className="text-gray-400">,</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-300">stack:</span> <span className="text-blue-400">[</span>
-                                <span className="text-green-400">"Next.js"</span><span className="text-gray-400">,</span> <span className="text-green-400">"React"</span><span className="text-gray-400">,</span> <span className="text-green-400">"TypeScript"</span>
-                                <span className="text-blue-400">]</span>
-                                <br />
-                                &nbsp;&nbsp;<span className="text-yellow-400">{"}"}</span><span className="text-gray-400">;</span>
-                                <br /><br />
-
-                                &nbsp;&nbsp;<span className="text-pink-500">return</span> <span className="text-blue-400">(</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-gray-500">{"<"}</span><span className="text-green-400">HeroSection</span><span className="text-gray-500">{">"}</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-gray-500">{"<"}</span><span className="text-green-400">Heading</span><span className="text-gray-500">{">"}</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-white border-r-2 border-primary animate-pulse pr-1">
-                                    {typewriterText}
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading leading-tight tracking-tighter text-white mix-blend-screen">
+                                FUTURE <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-x">
+                                    ARCHITECT
                                 </span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-gray-500">{"</"}</span><span className="text-green-400">Heading</span><span className="text-gray-500">{">"}</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-gray-500">{"<"}</span><span className="text-green-400">Button</span> <span className="text-blue-300">onClick</span><span className="text-pink-500">=</span><span className="text-blue-400">{"{"}</span><span className="text-yellow-400">exploreWork</span><span className="text-blue-400">{"}"}</span><span className="text-gray-500">{" />"}</span>
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-gray-500">{"</"}</span><span className="text-green-400">HeroSection</span><span className="text-gray-500">{">"}</span>
-                                <br />
-                                &nbsp;&nbsp;<span className="text-blue-400">)</span><span className="text-gray-400">;</span>
-                                <br />
-                                <span className="text-yellow-400">{"}"}</span><span className="text-gray-400">;</span>
+                            </h1>
+                        </motion.div>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed border-l-2 border-primary/50 pl-6"
+                        >
+                            I design and build high-performance digital infrastructure.
+                            Merging creative vision with engineering precision to define the next web.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                            className="flex flex-wrap gap-5 mt-2"
+                        >
+                            <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-bold px-8 h-14 text-base shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all" asChild>
+                                <Link href="/projects">
+                                    Initialize Project <ArrowRight className="ml-2 w-5 h-5" />
+                                </Link>
+                            </Button>
+
+                            <div className="flex items-center gap-4 px-6 border-l border-white/10">
+                                <Link href="#" className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all">
+                                    <Github className="w-6 h-6" />
+                                </Link>
+                                <Link href="#" className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all">
+                                    <Linkedin className="w-6 h-6" />
+                                </Link>
+                                <Link href="#" className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all">
+                                    <Twitter className="w-6 h-6" />
+                                </Link>
                             </div>
-                        </CodeWindow>
+                        </motion.div>
+                    </div>
+
+                    {/* Right Column: Terminal HUD */}
+                    <div className="relative w-full flex justify-center lg:justify-end">
+                        {/* Decorative HUD Elements */}
+                        <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/0 rounded-full blur-[60px] pointer-events-none" />
+
+                        <div className="absolute -z-10 w-[120%] h-[120%] border border-white/5 rounded-full animate-[spin_60s_linear_infinite]" />
+                        <div className="absolute -z-10 w-[80%] h-[80%] border border-dashed border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+
+                        <TerminalHUD />
                     </div>
                 </div>
             </Container>
