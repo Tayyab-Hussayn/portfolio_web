@@ -2,11 +2,11 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { TechStack } from "@/components/home/TechStack";
-#import { ClientProjects } from "@/components/home/ClientProjects";
-#import { Testimonials } from "@/components/home/Testimonials";
-#import { Services } from "@/components/home/Services";
+//import { ClientProjects } from "@/components/home/ClientProjects";
+//import { Testimonials } from "@/components/home/Testimonials";
+//import { Services } from "@/components/home/Services";
 import { FAQ } from "@/components/home/FAQ";
-#import { ContactCTA } from "@/components/home/ContactCTA";
+//import { ContactCTA } from "@/components/home/ContactCTA";
 
 export default function Home() {
   return (
@@ -14,11 +14,11 @@ export default function Home() {
       <Header />
       <Hero />
       <TechStack />
-#      <ClientProjects />
-#      <Testimonials />
-#      <Services />
+      {/* <ClientProjects /> */}
+      {/* <Testimonials /> */}
+      {/* <Services /> */}
       <FAQ />
-#      <ContactCTA />
+      {/* <ContactCTA /> */}
       <Footer />
     </main>
   );
