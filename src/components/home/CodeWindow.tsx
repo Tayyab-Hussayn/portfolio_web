@@ -50,10 +50,10 @@ export function CodeWindow({ children, className, fileName = "Hero.tsx" }: CodeW
             </div>
 
             {/* Editor Content */}
-            <div className="relative flex min-h-[500px] md:min-h-[600px]">
+            <div className="relative flex min-h-fit">
                 {/* Line Numbers */}
                 <div className="hidden sm:flex flex-col items-end gap-1 p-4 pr-6 bg-[#1e1e1e] border-r border-white/5 text-gray-600 text-sm font-mono select-none">
-                    {Array.from({ length: 25 }).map((_, i) => (
+                    {Array.from({ length: 18 }).map((_, i) => (
                         <div key={i} className="leading-relaxed">
                             {i + 1}
                         </div>
