@@ -17,6 +17,16 @@
   --font-heading: var(--font-poppins);
 }
 
+@layer utilities {
+  @media (min-width: 768px) {
+    .grid-template-areas-desktop {
+      grid-template-areas:
+        "visual visual logic"
+        "stack  perf   logic";
+    }
+  }
+}
+
 /* Dark mode overrides if needed, but keeping light theme dominant as requested */
 /* --background: #0a0a0a; */
 /* --foreground: #ededed; */

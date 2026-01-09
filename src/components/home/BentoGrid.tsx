@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { VisualCell } from './cells/VisualCell';
 import { LogicCell } from './cells/LogicCell';
