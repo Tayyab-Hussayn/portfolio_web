@@ -108,19 +108,22 @@ export function ProjectShowcase() {
                             <div
                                 key={project.id}
                                 id={`project-content-${index}`}
-                                className="min-h-screen flex flex-col justify-center gap-8 relative"
+                                className="min-h-screen flex flex-col justify-center gap-8 relative overflow-visible"
                             >
                                 {/* Mobile Image Fallback */}
                                 <div className="md:hidden w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 mb-8 relative">
                                     <Image src={project.image} alt={project.title} fill className="object-cover" />
                                 </div>
 
-                                <div className="relative">
-                                    <span
-                                        className="absolute -top-20 -left-10 text-[12rem] leading-none font-bold select-none pointer-events-none -z-10 text-white/5"
+                                <div className="relative overflow-visible">
+                                    {/* Massive Background Number for Depth */}
+                                    <div
+                                        className="absolute -top-20 -left-10 text-[12rem] md:text-[15rem] leading-none font-black select-none pointer-events-none text-white/5"
+                                        style={{ zIndex: -1 }}
+                                        aria-hidden="true"
                                     >
                                         {project.id}
-                                    </span>
+                                    </div>
                                     <span className="text-sm font-mono text-primary uppercase tracking-wider mb-2 block" style={{ color: project.accent_color }}>
                                         {project.category}
                                     </span>
