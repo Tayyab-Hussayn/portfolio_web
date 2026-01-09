@@ -63,9 +63,11 @@ const VisualCell = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] group">
+    <div className="relative w-full h-full overflow-hidden rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md hover:border-white/20 transition-colors duration-500 group">
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-violet-600/20 via-transparent to-transparent opacity-50 blur-2xl pointer-events-none" />
+      <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60 transition-transform duration-700 group-hover:scale-110" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
       <div className="absolute bottom-6 left-6">
         <h3 className="text-2xl font-bold text-white mb-1">UI/UX Design</h3>
         <p className="text-gray-400 text-sm">Pixel-perfect experiences</p>
@@ -92,9 +94,9 @@ const LogicCell = () => {
   }, { scope: codeRef });
 
   return (
-    <div className="relative w-full h-full min-h-[300px] rounded-3xl border border-white/10 bg-[#1e1e1e] overflow-hidden flex flex-col shadow-2xl">
+    <div className="relative w-full h-full min-h-[300px] rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md overflow-hidden flex flex-col shadow-2xl hover:border-white/20 transition-colors duration-500">
       {/* Window Controls */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-[#252526]">
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-[#252526]/50">
         <div className="w-3 h-3 rounded-full bg-red-500/50" />
         <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
         <div className="w-3 h-3 rounded-full bg-green-500/50" />
@@ -109,11 +111,19 @@ const LogicCell = () => {
         <div className="mt-4 animate-pulse w-2 h-4 bg-gray-500/50" />
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#1e1e1e] to-transparent pointer-events-none" />
+      <div className="absolute bottom-8 inset-x-0 h-32 bg-gradient-to-t from-[#1e1e1e]/20 to-transparent pointer-events-none" />
 
-      <div className="absolute bottom-6 left-6 z-10">
+      <div className="absolute bottom-12 left-6 z-10">
         <h3 className="text-2xl font-bold text-white mb-1">Backend Logic</h3>
         <p className="text-gray-400 text-sm">Scalable API Architecture</p>
+      </div>
+
+      {/* Status Bar */}
+      <div className="w-full h-8 bg-white/5 border-t border-white/5 flex items-center px-4 text-[10px] text-gray-500 font-mono gap-4 mt-auto">
+        <span>main*</span>
+        <span>Ln 42, Col 12</span>
+        <span className="ml-auto">TypeScript JSX</span>
+        <span>UTF-8</span>
       </div>
     </div>
   );
@@ -137,21 +147,21 @@ const StackCell = () => {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="relative w-full h-full min-h-[200px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 flex flex-col justify-between overflow-hidden group">
-      <div className="grid grid-cols-3 gap-4 relative z-10">
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400"><Layout className="w-6 h-6" /></div>
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-green-400"><Server className="w-6 h-6" /></div>
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400"><Database className="w-6 h-6" /></div>
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-purple-400"><Cpu className="w-6 h-6" /></div>
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400"><FileCode className="w-6 h-6" /></div>
-        <div className="stack-icon p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-orange-400"><Zap className="w-6 h-6" /></div>
+    <div ref={containerRef} className="relative w-full h-full min-h-[200px] rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md hover:border-white/20 transition-colors duration-500 p-6 flex flex-col justify-between overflow-hidden group">
+      <div className="flex flex-wrap gap-6 justify-center items-center relative z-10 h-full content-center">
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><Layout className="w-8 h-8" /></div>
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><Server className="w-8 h-8" /></div>
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><Database className="w-8 h-8" /></div>
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><Cpu className="w-8 h-8" /></div>
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><FileCode className="w-8 h-8" /></div>
+        <div className="stack-icon transition-all duration-300 ease-out text-gray-500 opacity-60 grayscale hover:text-white hover:opacity-100 hover:scale-110 hover:grayscale-0"><Zap className="w-8 h-8" /></div>
       </div>
       <div className="mt-4">
         <h3 className="text-xl font-bold text-white">Tech Stack</h3>
         <p className="text-gray-400 text-xs">Modern Tooling</p>
       </div>
       {/* Hover Glow */}
-      <div className="absolute inset-0 bg-blue-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </div>
   );
 };
@@ -179,7 +189,7 @@ const PerfCell = () => {
   }, { scope: countRef });
 
   return (
-    <div className="relative w-full h-full min-h-[200px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 flex flex-col justify-between group overflow-hidden">
+    <div className="relative w-full h-full min-h-[200px] rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md hover:border-white/20 transition-colors duration-500 p-6 flex flex-col justify-between group overflow-hidden">
       <div className="absolute top-0 right-0 p-32 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-green-500/20 transition-colors" />
 
       <div className="relative z-10">
