@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { TechStack } from "@/components/home/TechStack";
 import { BentoGrid } from "@/components/home/BentoGrid";
+import { ProjectShowcase } from "@/components/home/ProjectShowcase";
 //import { ClientProjects } from "@/components/home/ClientProjects";
 //import { Testimonials } from "@/components/home/Testimonials";
 //import { Services } from "@/components/home/Services";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <TechStack />
       <BentoGrid />
+      <ProjectShowcase />
       {/* <Testimonials /> */}
       {/* <Services /> */}
       <FAQ />
