@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/Hero";
 import { TechStack } from "@/components/home/TechStack";
 import { BentoGrid } from "@/components/home/BentoGrid";
 import { ProjectShowcase } from "@/components/home/ProjectShowcase";
+import { WorkflowTimeline } from "@/components/home/WorkflowTimeline";
 //import { ClientProjects } from "@/components/home/ClientProjects";
 //import { Testimonials } from "@/components/home/Testimonials";
 //import { Services } from "@/components/home/Services";
@@ -18,6 +19,7 @@ export default function Home() {
       <TechStack />
       <BentoGrid />
       <ProjectShowcase />
+      <WorkflowTimeline />
       {/* <Testimonials /> */}
       {/* <Services /> */}
       <FAQ />
