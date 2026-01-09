@@ -10,14 +10,35 @@ import { motion, AnimatePresence } from "framer-motion";
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+            
+            // Determine if we're past the hero section (assuming hero is ~100vh)
+            const pastHero = currentScrollY > window.innerHeight * 0.8;
+            setScrolled(pastHero);
+
+            // Header visibility logic
+            if (currentScrollY < 100) {
+                // Always show header at the top
+                setVisible(true);
+            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down - hide header
+                setVisible(false);
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - show header
+                setVisible(true);
+            }
+
+            setLastScrollY(currentScrollY);
         };
-        window.addEventListener("scroll", handleScroll);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [lastScrollY]);
 
     const navigation = [
         { name: "Home", href: "/" },
@@ -29,14 +50,25 @@ export function Header() {
     ];
 
     return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100" : "bg-transparent"
-                }`}
+        <motion.header
+            initial={{ y: 0 }}
+            animate={{ y: visible ? 0 : -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                scrolled 
+                    ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200" 
+                    : "bg-transparent"
+            }`}
         >
             <Container>
                 <div className="flex items-center justify-between h-20">
-                    <Link href="/" className="text-2xl font-bold font-heading text-[#453478]">
-                        DevPortfolio<span className="text-[#453478]">.</span>
+                    <Link 
+                        href="/" 
+                        className={`text-2xl font-bold font-heading transition-colors duration-300 ${
+                            scrolled ? "text-[#453478]" : "text-white"
+                        }`}
+                    >
+                        DevPortfolio<span className={scrolled ? "text-[#453478]" : "text-white"}>.</span>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -45,19 +77,33 @@ export function Header() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="text-sm font-medium text-black hover:text-primary transition-colors"
+                                className={`text-sm font-medium transition-colors duration-300 ${
+                                    scrolled 
+                                        ? "text-gray-700 hover:text-[#453478]" 
+                                        : "text-white/90 hover:text-white"
+                                }`}
                             >
                                 {item.name}
                             </Link>
                         ))}
-                        <Button variant="primary" className="ml-4" asChild>
+                        <Button 
+                            variant="primary" 
+                            className={`ml-4 transition-all duration-300 ${
+                                scrolled 
+                                    ? "bg-[#453478] hover:bg-[#453478]/90 text-white" 
+                                    : "bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30"
+                            }`} 
+                            asChild
+                        >
                             <Link href="/contact">Hire Me</Link>
                         </Button>
                     </nav>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden p-2 text-gray-600"
+                        className={`md:hidden p-2 transition-colors duration-300 ${
+                            scrolled ? "text-gray-700" : "text-white"
+                        }`}
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                     >
@@ -73,20 +119,23 @@ export function Header() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+                        className="md:hidden bg-white/95 backdrop-blur-md border-b border-gray-200 overflow-hidden"
                     >
                         <Container className="py-4 flex flex-col gap-4">
                             {navigation.map((item) => (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className="text-base font-medium text-gray-600 hover:text-primary py-2 block"
+                                    className="text-base font-medium text-gray-700 hover:text-[#453478] py-2 block transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item.name}
                                 </Link>
                             ))}
-                            <Button asChild className="w-full justify-center">
+                            <Button 
+                                className="w-full justify-center bg-[#453478] hover:bg-[#453478]/90" 
+                                asChild
+                            >
                                 <Link href="/contact" onClick={() => setIsOpen(false)}>
                                     Hire Me
                                 </Link>
@@ -95,6 +144,6 @@ export function Header() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </motion.header>
     );
 }
