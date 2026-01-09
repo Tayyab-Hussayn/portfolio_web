@@ -118,21 +118,23 @@ export function ProjectShowcase() {
                                 <div className="relative overflow-visible">
                                     {/* Massive Background Number for Depth */}
                                     <div
-                                        className="absolute -top-20 -left-10 text-[12rem] md:text-[15rem] leading-none font-black select-none pointer-events-none text-white/5"
-                                        style={{ zIndex: -1 }}
+                                        className="absolute -top-20 -left-10 text-[12rem] md:text-[15rem] leading-none font-black select-none pointer-events-none text-white/8 z-0"
                                         aria-hidden="true"
                                     >
                                         {project.id}
                                     </div>
-                                    <span className="text-sm font-mono text-primary uppercase tracking-wider mb-2 block" style={{ color: project.accent_color }}>
-                                        {project.category}
-                                    </span>
-                                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                                        {project.title}
-                                    </h2>
-                                    <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-                                        {project.description}
-                                    </p>
+
+                                    <div className="relative z-10">
+                                        <span className="text-sm font-mono text-primary uppercase tracking-wider mb-2 block" style={{ color: project.accent_color }}>
+                                            {project.category}
+                                        </span>
+                                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                            {project.title}
+                                        </h2>
+                                        <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+                                            {project.description}
+                                        </p>
+                                    </div>
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 mb-8">
