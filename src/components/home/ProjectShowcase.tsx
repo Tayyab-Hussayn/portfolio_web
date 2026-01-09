@@ -64,7 +64,15 @@ export function ProjectShowcase() {
 
                     {/* LEFT COLUMN: VISUALS (Sticky) */}
                     <div className="hidden md:flex w-1/2 h-screen sticky top-0 items-center justify-center">
-                        <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#1e1e1e]">
+                        <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#1e1e1e]" style={{ boxShadow: `0 25px 50px -12px ${projects[activeProject].accent_color}40` }}>
+                            {/* Back Glow (Levitation) */}
+                            <div
+                                className="absolute -inset-4 opacity-20 blur-2xl -z-10 rounded-full transition-colors duration-700"
+                                style={{
+                                    background: `linear-gradient(to right, ${projects[activeProject].accent_color}, ${projects[activeProject].accent_color})`
+                                }}
+                            />
+
                             {/* Ambient Glow based on active project */}
                             <div
                                 className="absolute inset-0 opacity-20 blur-3xl transition-colors duration-700"
@@ -109,8 +117,7 @@ export function ProjectShowcase() {
 
                                 <div className="relative">
                                     <span
-                                        className="absolute -top-20 -left-10 text-[120px] font-bold text-transparent stroke-white/5 opacity-50 select-none pointer-events-none"
-                                        style={{ WebkitTextStroke: '1px rgba(255,255,255,0.1)' }}
+                                        className="absolute -top-20 -left-10 text-[12rem] leading-none font-bold select-none pointer-events-none -z-10 text-white/5"
                                     >
                                         {project.id}
                                     </span>
@@ -125,7 +132,7 @@ export function ProjectShowcase() {
                                     </p>
                                 </div>
 
-                                <div className="flex flex-wrap gap-3">
+                                <div className="flex flex-wrap gap-3 mb-8">
                                     {project.stack.map((tech) => (
                                         <span
                                             key={tech}
@@ -138,10 +145,10 @@ export function ProjectShowcase() {
 
                                 <Link
                                     href="#"
-                                    className="inline-flex items-center gap-2 text-white font-medium group w-fit"
+                                    className="inline-flex items-center gap-2 text-white font-medium group w-fit cursor-pointer"
                                 >
                                     <span className="border-b border-white/30 pb-1 group-hover:border-white transition-colors">View Case Study</span>
-                                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                    <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </Link>
                             </div>
                         ))}

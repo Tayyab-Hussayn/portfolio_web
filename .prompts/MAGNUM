@@ -1,0 +1,103 @@
+MASTER DIRECTIVE: SECTION 3 - THE "MAGNUM OPUS" (STICKY SCROLL)
+TO: Vibe Coding Agent
+FROM: Lead Architect
+PRIORITY: HIGH
+OBJECTIVE: Build a cinematic, sticky-scroll project showcase.
+CONTEXT: We are abandoning the traditional "Grid of Cards" layout. That is for junior developers. We are building an immersive Case Study Engine. The user must feel like they are stepping inside each project.
+1. THE CONCEPT: "CINEMATIC STORYTELLING"
+Instead of overwhelming the user with 6 small screenshots, we focus on 3 Flagship Projects.
+The Layout: A Split-Screen design.
+Left Side (The Canvas): A massive, high-fidelity visual area that acts as a "window" into the project. As the user scrolls, this area remains STICKY (pinned) to the screen. The image inside transitions smoothly from Project A to Project B to Project C.
+Right Side (The Narrative): The project details (Title, Problem, Solution, Tech Stack) scroll vertically. As the "Project B" text enters the viewport, the Left Side image morphs to match it.
+Psychology: This forces the client to focus on one story at a time. It implies, "I don't just churn out code; I build complete products."
+2. ARCHITECTURAL BLUEPRINT (JSON)
+Agent Instruction: Use this data structure. Do not hardcode HTML structure without this data backing it.
+code
+JSON
+{
+  "component_name": "ProjectShowcase",
+  "interaction_type": "GSAP_ScrollTrigger_Pinning",
+  "projects": [
+    {
+      "id": "01",
+      "title": "FinTech Dashboard Core",
+      "category": "System Architecture",
+      "description": "A high-performance financial analytics engine processing 50k+ transactions per second. Built with real-time WebSockets and optimized SQL queries.",
+      "stack": ["Next.js", "TypeScript", "PostgreSQL", "D3.js"],
+      "image": "/projects/fintech-screen.png",
+      "accent_color": "#3B82F6" // Blue glow
+    },
+    {
+      "id": "02",
+      "title": "E-Commerce Headless API",
+      "category": "Backend Engineering",
+      "description": "A scalable headless architecture serving 3 platforms (Web, iOS, Android). Features Redis caching and stripe integration with zero downtime.",
+      "stack": ["Node.js", "GraphQL", "Redis", "Docker"],
+      "image": "/projects/backend-diagram.png",
+      "accent_color": "#10B981" // Green glow
+    },
+    {
+      "id": "03",
+      "title": "AI Content Generator",
+      "category": "Full Stack AI",
+      "description": "SaaS platform leveraging OpenAI API. Features stream-based responses, credit systems, and multi-tenant authentication.",
+      "stack": ["React", "Python", "FastAPI", "Stripe"],
+      "image": "/projects/ai-ui.png",
+      "accent_color": "#8B5CF6" // Purple glow
+    }
+  ]
+}
+3. TECHNICAL SPECIFICATIONS (STACK)
+Framework: Next.js + TypeScript.
+Styling: Tailwind CSS.
+Animation: GSAP (ScrollTrigger).
+Mechanism: We will use ScrollTrigger to detect which text section is active and update the "Sticky Visual" accordingly.
+4. DETAILED IMPLEMENTATION PLAN
+Step A: The Layout Structure (Mobile vs. Desktop)
+Mobile: Stacked layout. Image Top, Text Bottom. Simple vertical scroll. No sticky effects (it breaks UX on phones).
+Desktop (md:):
+Container: flex gap-20 relative.
+Left Column (Visuals): w-1/2 h-screen sticky top-0 flex items-center justify-center. This holds the mockups.
+Right Column (Content): w-1/2 flex flex-col gap-[50vh]. This holds the text. The huge gap ensures we have time to look at the image before scrolling to the next one.
+Step B: The "Visual" Component (Left Side)
+This is the magic part.
+It should contain a Laptop Frame or a Glass Card container.
+Logic: It receives the activeProject index from the state.
+Transition: When activeProject changes, the image inside should fade out/scale down slightly, then the new image fades in/scales up.
+Background: Add a massive, blurred radial gradient behind the laptop that changes color based on the project.accent_color.
+Step C: The "Content" Component (Right Side)
+Each text block must be distinct.
+Typography:
+Project ID (01, 02) should be huge, hollow/outlined text (text-transparent stroke-white stroke-2) in the background to add texture.
+Title: Bold, Heading 2.
+Description: Gray-400, relaxed line-height.
+Tech Stack: Use "Pill" tags (rounded-full bg-white/5 border border-white/10).
+Step D: The GSAP Logic
+Agent Instruction: Use useGSAP hook.
+code
+TypeScript
+// Conceptual Logic
+useGSAP(() => {
+  projects.forEach((project, index) => {
+    ScrollTrigger.create({
+      trigger: `#project-content-${index}`, // The text block
+      start: 'top center',
+      end: 'bottom center',
+      onEnter: () => setActiveProject(index),
+      onEnterBack: () => setActiveProject(index),
+    });
+  });
+}, { scope: containerRef });
+5. UI POLISH (THE "ELITE" TOUCHES)
+Agent Instruction: Do not build a boring list. Add these specific details:
+Glassmorphism on the Laptop: The mockup container should have a subtle white border border border-white/10 and a deep shadow shadow-2xl.
+Live Links: Add a "View Project" button that looks like a magnetic link (icon arrow 45 degrees).
+Smoothness: The image transition must be seamless. Use CSS transition-all duration-500 on the image element for opacity and transform.
+6. EXECUTION ORDER
+Setup: Create ProjectShowcase.tsx. Define the project data array.
+Structure: Build the flex layout (Left Sticky, Right Scroll).
+State: Create [activeProject, setActiveProject] = useState(0).
+Binding: Connect the Left Side image source to projects[activeProject].image.
+Triggers: Implement the GSAP ScrollTriggers to update the state as you scroll.
+Style: Apply the Tailwind polish (gradients, typography, borders).
+
