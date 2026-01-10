@@ -1,19 +1,11 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Search, Layout, Code, Rocket } from "lucide-react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const iconMap = {
-    Search,
-    Layout,
-    Code,
-    Rocket
-};
 
 const steps = [
     {
@@ -90,70 +82,54 @@ export function WorkflowTimeline() {
                 </div>
 
                 {/* Timeline Container */}
-                <div ref={containerRef} className="relative">
-                    {/* The Static Track (Gray Line) */}
-                    <div className="absolute left-8 md:left-12 top-0 w-0.5 h-full bg-neutral-800" />
+                <div ref={containerRef} className="relative pl-4 md:pl-0">
+                    {/* The Static Track (Gray Laser Line) */}
+                    <div className="absolute left-4 md:left-[3.5rem] top-0 w-[1px] h-full bg-neutral-800" />
 
                     {/* The Liquid Line (Animated Fill) */}
                     <div
                         ref={lineRef}
-                        className="absolute left-8 md:left-12 top-0 w-0.5 h-full bg-gradient-to-b from-blue-500 to-purple-500 origin-top"
+                        className="absolute left-4 md:left-[3.5rem] top-0 w-[2px] h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-purple-500 origin-top shadow-[0_0_15px_rgba(59,130,246,0.5)]"
                         style={{ transform: 'scaleY(0)' }}
                     />
 
                     {/* Timeline Steps */}
-                    <div className="space-y-16 md:space-y-24">
+                    <div className="space-y-24">
                         {steps.map((step, index) => {
-                            const Icon = iconMap[step.icon as keyof typeof iconMap];
-                            const isActive = index <= activeStep;
+                            const isActive = index === activeStep; // Only current is fully active
+                            const isPast = index < activeStep;
 
                             return (
                                 <div
                                     key={step.id}
                                     id={`step-${index}`}
-                                    className="relative flex items-start gap-6 md:gap-12"
+                                    className={`
+                                        relative pl-16 md:pl-32 py-4 transition-all duration-700 ease-out
+                                        ${isActive ? 'opacity-100 blur-0 scale-100' : 'opacity-30 blur-[1px] scale-95'}
+                                    `}
                                 >
-                                    {/* Icon Node */}
-                                    <div className="relative flex-shrink-0">
+                                    {/* The Node (The "Pulse") */}
+                                    <div className="absolute left-4 md:left-[3.5rem] top-8 -translate-x-1/2 flex items-center justify-center">
                                         <div
                                             className={`
-                                                w-16 h-16 rounded-full flex items-center justify-center
-                                                border-2 transition-all duration-500
-                                                ${isActive
-                                                    ? 'bg-blue-500 border-blue-400 shadow-lg shadow-blue-500/50'
-                                                    : 'bg-neutral-900 border-neutral-700'
+                                                rounded-full transition-all duration-500
+                                                ${isActive || isPast
+                                                    ? 'w-4 h-4 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.8)]'
+                                                    : 'w-3 h-3 border border-neutral-600 bg-black'
                                                 }
                                             `}
-                                        >
-                                            <Icon
-                                                className={`w-7 h-7 transition-colors duration-500 ${isActive ? 'text-white' : 'text-neutral-500'
-                                                    }`}
-                                            />
-                                        </div>
+                                        />
                                     </div>
 
-                                    {/* Content Card */}
-                                    <div
-                                        className={`
-                                            flex-1 pb-8 pl-6 border-l-2 transition-all duration-500
-                                            ${isActive
-                                                ? 'border-blue-500 bg-white/5 rounded-r-lg pr-6 -ml-px'
-                                                : 'border-transparent'
-                                            }
-                                        `}
-                                    >
-                                        {/* Phase Label */}
-                                        <span className="text-xs font-mono text-blue-400 uppercase tracking-widest mb-2 block">
+                                    {/* The Content (Typography Hero) */}
+                                    <div className="flex flex-col">
+                                        <span className="font-mono text-xs text-cyan-500 mb-3 tracking-widest uppercase">
                                             {step.phase}
                                         </span>
-
-                                        {/* Title */}
-                                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
                                             {step.title}
                                         </h3>
-
-                                        {/* Description */}
-                                        <p className="text-gray-400 leading-relaxed">
+                                        <p className="text-neutral-400 leading-relaxed text-lg max-w-xl">
                                             {step.desc}
                                         </p>
                                     </div>
