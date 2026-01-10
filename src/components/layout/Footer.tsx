@@ -1,108 +1,96 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { ArrowUp } from "lucide-react";
 
 export function Footer() {
-    const buttonRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLSpanElement>(null);
+    const [time, setTime] = useState("");
 
-    // GSAP Magnetic Effect
-    useGSAP(() => {
-        const button = buttonRef.current;
-        const text = textRef.current;
-        if (!button || !text) return;
-
-        const xTo = gsap.quickTo(button, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
-        const yTo = gsap.quickTo(button, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
-
-        const xToText = gsap.quickTo(text, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
-        const yToText = gsap.quickTo(text, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
-
-        const handleMouseMove = (e: MouseEvent) => {
-            const { clientX, clientY } = e;
-            const { left, top, width, height } = button.getBoundingClientRect();
-
-            const x = clientX - (left + width / 2);
-            const y = clientY - (top + height / 2);
-
-            xTo(x * 0.5);
-            yTo(y * 0.5);
-            xToText(x * 0.2);
-            yToText(y * 0.2);
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString('en-US', { hour12: false }));
         };
+        updateTime();
+        const interval = setInterval(updateTime, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
-        const handleMouseLeave = () => {
-            xTo(0);
-            yTo(0);
-            xToText(0);
-            yToText(0);
-        };
-
-        button.addEventListener("mousemove", handleMouseMove as any);
-        button.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            button.removeEventListener("mousemove", handleMouseMove as any);
-            button.removeEventListener("mouseleave", handleMouseLeave);
-        };
-    }, { scope: buttonRef });
-
-    const socialLinks = [
-        { name: "GitHub", icon: Github, href: "https://github.com" },
-        { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
-        { name: "Twitter", icon: Twitter, href: "https://twitter.com" },
-        { name: "Email", icon: Mail, href: "mailto:hello@example.com" },
-    ];
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     return (
-        <footer className="relative h-[80vh] bg-[#050505] flex flex-col items-center justify-center overflow-hidden">
-            {/* Sub-atomic Grid Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        <footer
+            className="fixed bottom-0 left-0 w-full h-screen bg-[#050505] text-white z-0 flex flex-col justify-between p-4 md:p-10"
+            style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+        >
+            {/* Background Texture (Noise) - Optional */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("/noise.png")' }}></div>
 
-            <div className="relative z-10 flex flex-col items-center text-center gap-8">
-                {/* Headline */}
-                <h2 className="text-6xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 select-none">
-                    Have an idea?
-                </h2>
-                <p className="text-xl text-neutral-400 font-light tracking-wide">
-                    Let&apos;s build the extraordinary together.
-                </p>
-
-                {/* Magnetic Button */}
-                <div className="mt-12 p-10 cursor-pointer">
-                    <div
-                        ref={buttonRef}
-                        className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-blue-600 hover:bg-blue-500 transition-colors duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(37,99,235,0.3)] hover:shadow-[0_0_60px_rgba(37,99,235,0.5)] group"
-                    >
-                        <span ref={textRef} className="text-white font-medium text-lg md:text-xl pointer-events-none">
-                            Get in touch
-                        </span>
-                    </div>
-                </div>
+            {/* TOP: MASSIVE TEXT */}
+            <div className="flex-grow flex items-center justify-center">
+                <h1 className="text-[12vw] leading-none font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 hover:text-blue-600 transition-colors duration-500 cursor-pointer select-none">
+                    Let&apos;s Talk
+                </h1>
             </div>
 
-            {/* Social Links Row */}
-            <div className="absolute bottom-10 left-0 right-0 flex justify-between items-end px-8 md:px-12">
-                <div className="text-neutral-500 text-sm font-mono tracking-tighter">
-                    © 2026 / LOCALHOST
+            {/* BOTTOM: THE DATA GRID */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10 relative z-10 bg-[#050505]/50 backdrop-blur-sm">
+
+                {/* Col 1: Identity */}
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1">
+                        <span className="text-gray-500 uppercase text-xs tracking-widest">Identify</span>
+                        <span className="text-lg font-bold">John Doe</span>
+                        <span className="text-gray-400">Full Stack Engineer</span>
+                    </div>
+                    <div className="flex flex-col gap-1 mt-auto">
+                        <span className="text-gray-500 uppercase text-xs tracking-widest">Local Time</span>
+                        <span className="text-xl font-mono text-cyan-400">{time} GMT+5</span>
+                    </div>
                 </div>
 
-                <div className="flex gap-8 group/socials">
-                    {socialLinks.map((social) => (
-                        <Link
-                            key={social.name}
-                            href={social.href}
-                            target="_blank"
-                            className="text-neutral-400 hover:text-white transition-all duration-300 hover:scale-110 group-hover/socials:not(:hover):opacity-20 group-hover/socials:not(:hover):scale-90"
-                        >
-                            <social.icon className="w-6 h-6" />
-                            <span className="sr-only">{social.name}</span>
-                        </Link>
-                    ))}
+                {/* Col 2: Socials */}
+                <div className="flex flex-col gap-4">
+                    <span className="text-gray-500 uppercase text-xs tracking-widest">Socials</span>
+                    <Link href="https://linkedin.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
+                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
+                        LinkedIn
+                    </Link>
+                    <Link href="https://github.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
+                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
+                        GitHub
+                    </Link>
+                    <Link href="https://twitter.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
+                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
+                        Twitter
+                    </Link>
+                    <Link href="mailto:hello@example.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
+                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
+                        Email
+                    </Link>
+                </div>
+
+                {/* Col 3: Navigation */}
+                <div className="flex flex-col gap-4">
+                    <span className="text-gray-500 uppercase text-xs tracking-widest">Menu</span>
+                    <Link href="/" className="hover:text-white text-gray-400 transition-colors">Home</Link>
+                    <Link href="/projects" className="hover:text-white text-gray-400 transition-colors">Work</Link>
+                    <Link href="/about" className="hover:text-white text-gray-400 transition-colors">About</Link>
+                    <Link href="/contact" className="hover:text-white text-gray-400 transition-colors">Contact</Link>
+                </div>
+
+                {/* Col 4: Action */}
+                <div className="flex flex-col justify-between items-end">
+                    <button
+                        onClick={scrollToTop}
+                        className="w-16 h-16 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center group"
+                    >
+                        <ArrowUp className="w-6 h-6 transition-transform group-hover:-translate-y-1" />
+                    </button>
+                    <span className="text-neutral-600 text-xs font-mono">© 2026 Portfolio</span>
                 </div>
             </div>
         </footer>
