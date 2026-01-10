@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowUp } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
 export function Footer() {
     const [time, setTime] = useState("");
@@ -17,80 +17,78 @@ export function Footer() {
         return () => clearInterval(interval);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
     return (
         <footer
-            className="fixed bottom-0 left-0 w-full h-screen bg-[#050505] text-white z-0 flex flex-col justify-between p-4 md:p-10"
+            className="fixed bottom-0 left-0 w-full h-screen bg-[#050505] text-white z-0 flex flex-col justify-between"
             style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
         >
-            {/* Background Texture (Noise) - Optional */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("/noise.png")' }}></div>
+            {/* Background Texture (Noise) */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("/noise.png")' }}></div>
+            {/* Technical Grid Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
 
-            {/* TOP: MASSIVE TEXT */}
-            <div className="flex-grow flex items-center justify-center">
-                <h1 className="text-[12vw] leading-none font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 hover:text-blue-600 transition-colors duration-500 cursor-pointer select-none">
-                    Let&apos;s Talk
-                </h1>
+            {/* TOP: KINETIC TYPOGRAPHY */}
+            <div className="flex-grow flex items-center justify-center relative z-10 w-full overflow-hidden">
+                <div className="group relative flex items-center justify-center w-full h-[40vh] cursor-pointer">
+                    {/* The Static Text (Visible by default) */}
+                    <h1 className="text-[12vw] font-black uppercase tracking-tighter text-white group-hover:opacity-0 transition-opacity duration-300 select-none">
+                        Start Project
+                    </h1>
+
+                    {/* The Marquee (Visible on Hover) */}
+                    <div className="absolute inset-0 flex items-center whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="animate-marquee flex gap-10">
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <span key={i} className="text-[12vw] font-black uppercase tracking-tighter text-blue-500 stroke-text select-none">
+                                    Let&apos;s Build • Let&apos;s Build •
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* BOTTOM: THE DATA GRID */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10 relative z-10 bg-[#050505]/50 backdrop-blur-sm">
+            {/* BOTTOM: THE COCKPIT DATA ROW */}
+            <div className="border-t border-white/10 bg-black/50 backdrop-blur-sm p-8 flex flex-col md:flex-row justify-between items-end gap-8 relative z-10">
 
-                {/* Col 1: Identity */}
-                <div className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-1">
-                        <span className="text-gray-500 uppercase text-xs tracking-widest">Identify</span>
-                        <span className="text-lg font-bold">John Doe</span>
-                        <span className="text-gray-400">Full Stack Engineer</span>
+                {/* Column 1: Identity (Mono Font) */}
+                <div className="font-mono text-sm space-y-2">
+                    <div className="flex items-center gap-2 text-gray-400">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <span>SYSTEM STATUS: ONLINE</span>
                     </div>
-                    <div className="flex flex-col gap-1 mt-auto">
-                        <span className="text-gray-500 uppercase text-xs tracking-widest">Local Time</span>
-                        <span className="text-xl font-mono text-cyan-400">{time} GMT+5</span>
-                    </div>
+                    <div className="text-white font-bold text-xl tracking-tight">JOHN DOE</div>
+                    <div className="text-gray-500">ENGINEERING INTERFACE v2.0</div>
                 </div>
 
-                {/* Col 2: Socials */}
-                <div className="flex flex-col gap-4">
-                    <span className="text-gray-500 uppercase text-xs tracking-widest">Socials</span>
-                    <Link href="https://linkedin.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
-                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
-                        LinkedIn
-                    </Link>
-                    <Link href="https://github.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
-                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
-                        GitHub
-                    </Link>
-                    <Link href="https://twitter.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
-                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
-                        Twitter
-                    </Link>
-                    <Link href="mailto:hello@example.com" className="hover:text-blue-500 transition-colors flex items-center gap-2 group">
-                        <span className="w-2 h-2 rounded-full bg-neutral-600 group-hover:bg-blue-500 transition-colors"></span>
-                        Email
-                    </Link>
+                {/* Column 2: The Social Pills */}
+                <div className="flex flex-wrap gap-3">
+                    {[
+                        { name: 'GitHub', icon: <Github className="w-5 h-5" />, href: "https://github.com" },
+                        { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com" },
+                        { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com" },
+                        { name: 'Email', icon: <Mail className="w-5 h-5" />, href: "mailto:hello@example.com" }
+                    ].map((social) => (
+                        <Link
+                            key={social.name}
+                            href={social.href}
+                            className="group flex items-center gap-2 h-12 px-4 rounded-full border border-white/10 bg-white/5 hover:bg-white hover:text-black transition-all duration-300"
+                        >
+                            <span className="group-hover:scale-110 transition-transform text-white group-hover:text-black">
+                                {social.icon}
+                            </span>
+                            {/* Text reveals on hover */}
+                            <span className="w-0 overflow-hidden group-hover:w-auto group-hover:ml-2 transition-all duration-300 font-medium whitespace-nowrap">
+                                {social.name}
+                            </span>
+                        </Link>
+                    ))}
                 </div>
 
-                {/* Col 3: Navigation */}
-                <div className="flex flex-col gap-4">
-                    <span className="text-gray-500 uppercase text-xs tracking-widest">Menu</span>
-                    <Link href="/" className="hover:text-white text-gray-400 transition-colors">Home</Link>
-                    <Link href="/projects" className="hover:text-white text-gray-400 transition-colors">Work</Link>
-                    <Link href="/about" className="hover:text-white text-gray-400 transition-colors">About</Link>
-                    <Link href="/contact" className="hover:text-white text-gray-400 transition-colors">Contact</Link>
-                </div>
-
-                {/* Col 4: Action */}
-                <div className="flex flex-col justify-between items-end">
-                    <button
-                        onClick={scrollToTop}
-                        className="w-16 h-16 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center group"
-                    >
-                        <ArrowUp className="w-6 h-6 transition-transform group-hover:-translate-y-1" />
-                    </button>
-                    <span className="text-neutral-600 text-xs font-mono">© 2026 Portfolio</span>
+                {/* Column 3: Local Time (Mono) */}
+                <div className="font-mono text-right hidden md:block">
+                    <div className="text-xs text-gray-500 uppercase mb-1">Local Time (PKT)</div>
+                    <div className="text-3xl text-white font-light">{time}</div>
                 </div>
             </div>
         </footer>

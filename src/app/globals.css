@@ -45,3 +45,22 @@ h5,
 h6 {
   font-family: var(--font-heading);
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.stroke-text {
+  -webkit-text-stroke: 2px #3b82f6;
+  color: transparent;
+}
