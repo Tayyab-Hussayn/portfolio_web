@@ -1,149 +1,115 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { Home, User, Briefcase, Zap, Send } from "lucide-react";
+import { useState } from "react";
 
 export function Header() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [visible, setVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const pathname = usePathname();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            
-            // Determine if we're past the hero section (assuming hero is ~100vh)
-            const pastHero = currentScrollY > window.innerHeight * 0.8;
-            setScrolled(pastHero);
-
-            // Header visibility logic
-            if (currentScrollY < 100) {
-                // Always show header at the top
-                setVisible(true);
-            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Scrolling down - hide header
-                setVisible(false);
-            } else if (currentScrollY < lastScrollY) {
-                // Scrolling up - show header
-                setVisible(true);
-            }
-
-            setLastScrollY(currentScrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
-
-    const navigation = [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Services", href: "/services" },
-        { name: "Projects", href: "/projects" },
-        { name: "Testimonials", href: "/testimonials" },
-        { name: "Contact", href: "/contact" },
+    const routes = [
+        { name: "Home", path: "/", icon: Home },
+        { name: "About", path: "/about", icon: User },
+        { name: "Work", path: "/projects", icon: Briefcase },
+        { name: "Services", path: "/services", icon: Zap },
+        { name: "Contact", path: "/contact", icon: Send },
     ];
 
     return (
-        <motion.header
-            initial={{ y: 0 }}
-            animate={{ y: visible ? 0 : -100 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                scrolled 
-                    ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200" 
-                    : "bg-transparent"
-            }`}
-        >
-            <Container>
-                <div className="flex items-center justify-between h-20">
-                    <Link 
-                        href="/" 
-                        className={`text-2xl font-bold font-heading transition-colors duration-300 ${
-                            scrolled ? "text-[#453478]" : "text-white"
-                        }`}
-                    >
-                        DevPortfolio<span className={scrolled ? "text-[#453478]" : "text-white"}>.</span>
-                    </Link>
+        <>
+            {/* DESKTOP CAPSULE (Dynamic Expanding Nav) */}
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 px-2 py-2 rounded-full bg-neutral-900/50 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20 z-[100]">
+                {routes.map((route) => (
+                    <ExpandableIcon
+                        key={route.name}
+                        route={route}
+                        isActive={pathname === route.path}
+                    />
+                ))}
+            </div>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-8">
-                        {navigation.map((item) => (
+            {/* MOBILE TAB BAR (Floating Bottom) */}
+            <div className="fixed bottom-4 left-4 right-4 h-16 bg-[#050505]/90 backdrop-blur-xl border border-white/10 rounded-2xl md:hidden z-50 px-2 shadow-2xl">
+                <div className="flex justify-between items-center h-full px-2">
+                    {routes.map((route) => {
+                        const isActive = pathname === route.path;
+                        return (
                             <Link
-                                key={item.name}
-                                href={item.href}
-                                className={`text-sm font-medium transition-colors duration-300 ${
-                                    scrolled 
-                                        ? "text-gray-700 hover:text-[#453478]" 
-                                        : "text-white/90 hover:text-white"
-                                }`}
+                                key={route.name}
+                                href={route.path}
+                                className="relative flex flex-col items-center justify-center w-12 h-12"
                             >
-                                {item.name}
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="mobile-active-pill"
+                                        className="absolute inset-0 bg-blue-500/10 rounded-xl"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                                <route.icon
+                                    className={`w-6 h-6 z-10 transition-colors duration-300 ${isActive ? "text-blue-500" : "text-gray-500"
+                                        }`}
+                                />
+                                {isActive && (
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        className="absolute -bottom-1 w-1 h-1 bg-blue-500 rounded-full"
+                                    />
+                                )}
                             </Link>
-                        ))}
-                        <Button 
-                            variant="primary" 
-                            className={`ml-4 transition-all duration-300 ${
-                                scrolled 
-                                    ? "bg-[#453478] hover:bg-[#453478]/90 text-white" 
-                                    : "bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30"
-                            }`} 
-                            asChild
-                        >
-                            <Link href="/contact">Hire Me</Link>
-                        </Button>
-                    </nav>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        className={`md:hidden p-2 transition-colors duration-300 ${
-                            scrolled ? "text-gray-700" : "text-white"
-                        }`}
-                        onClick={() => setIsOpen(!isOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                        );
+                    })}
                 </div>
-            </Container>
+            </div>
+        </>
+    );
+}
 
-            {/* Mobile Navigation */}
-            <AnimatePresence>
-                {isOpen && (
+// Helper Component for Expandable Desktop Icons
+function ExpandableIcon({ route, isActive }: { route: any, isActive: boolean }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <Link href={route.path}>
+            <motion.div
+                className={`relative flex items-center justify-center px-4 py-3 rounded-full transition-all duration-300 ${isActive ? "bg-white/10 text-white" : "text-neutral-400 hover:text-white hover:bg-white/5"
+                    }`}
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
+                layout
+            >
+                <route.icon strokeWidth={1.5} className="w-5 h-5 z-10 relative" />
+
+                <AnimatePresence>
+                    {isHovered && (
+                        <motion.span
+                            initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+                            animate={{ width: "auto", opacity: 1, marginLeft: 8 }}
+                            exit={{ width: 0, opacity: 0, marginLeft: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="overflow-hidden whitespace-nowrap text-sm font-medium z-10 relative"
+                        >
+                            {route.name}
+                        </motion.span>
+                    )}
+                </AnimatePresence>
+
+                {/* Active Indicator (Review if needed, maybe the pill bg is enough?) 
+                    The plan says "Active Dot". Let's keep it minimal if using pill bg.
+                    Actually, if using bg-white/10, the dot might be redundant. 
+                    Let's Add a subtle glow dot anyway for consistency or remove if clean.
+                    User asked to "Keep the 'Active Dot' indicator or Highlight logic".
+                */}
+                {isActive && !isHovered && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white/95 backdrop-blur-md border-b border-gray-200 overflow-hidden"
-                    >
-                        <Container className="py-4 flex flex-col gap-4">
-                            {navigation.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-base font-medium text-gray-700 hover:text-[#453478] py-2 block transition-colors"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                            <Button 
-                                className="w-full justify-center bg-[#453478] hover:bg-[#453478]/90" 
-                                asChild
-                            >
-                                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                                    Hire Me
-                                </Link>
-                            </Button>
-                        </Container>
-                    </motion.div>
+                        layoutId="active-nav-dot"
+                        className="absolute -bottom-1 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_white]"
+                    />
                 )}
-            </AnimatePresence>
-        </motion.header>
+            </motion.div>
+        </Link>
     );
 }
