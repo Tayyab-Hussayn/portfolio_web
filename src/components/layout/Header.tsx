@@ -19,8 +19,8 @@ export function Header() {
 
     return (
         <>
-            {/* DESKTOP CAPSULE (Dynamic Expanding Nav) */}
-            <div className="fixed top-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 px-2 py-2 rounded-full bg-neutral-900/50 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20 z-[100]">
+            {/* DESKTOP CAPSULE (The Razor Capsule) */}
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1 p-1 rounded-full bg-neutral-900/50 backdrop-blur-md border border-white/10 shadow-lg shadow-black/20 z-[100]">
                 {routes.map((route) => (
                     <ExpandableIcon
                         key={route.name}
@@ -75,21 +75,23 @@ function ExpandableIcon({ route, isActive }: { route: any, isActive: boolean }) 
     return (
         <Link href={route.path}>
             <motion.div
-                className={`relative flex items-center justify-center px-4 py-3 rounded-full transition-all duration-300 ${isActive ? "bg-white/10 text-white" : "text-neutral-400 hover:text-white hover:bg-white/5"
+                className={`relative flex items-center justify-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${isActive ? "bg-white/10 text-white" : "text-neutral-400 hover:text-white hover:bg-white/5"
                     }`}
                 onHoverStart={() => setIsHovered(true)}
                 onHoverEnd={() => setIsHovered(false)}
                 layout
             >
-                <route.icon strokeWidth={1.5} className="w-5 h-5 z-10 relative" />
+                {/* 1. Icon (Smaller & Sharper) */}
+                <route.icon strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5 z-10 relative" />
 
+                {/* 2. Text Label (Tight & Clean) */}
                 <AnimatePresence>
                     {isHovered && (
                         <motion.span
-                            initial={{ width: 0, opacity: 0, marginLeft: 0 }}
-                            animate={{ width: "auto", opacity: 1, marginLeft: 8 }}
-                            exit={{ width: 0, opacity: 0, marginLeft: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            initial={{ width: 0, opacity: 0 }}
+                            animate={{ width: "auto", opacity: 1 }}
+                            exit={{ width: 0, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             className="overflow-hidden whitespace-nowrap text-sm font-medium z-10 relative"
                         >
                             {route.name}
@@ -97,16 +99,11 @@ function ExpandableIcon({ route, isActive }: { route: any, isActive: boolean }) 
                     )}
                 </AnimatePresence>
 
-                {/* Active Indicator (Review if needed, maybe the pill bg is enough?) 
-                    The plan says "Active Dot". Let's keep it minimal if using pill bg.
-                    Actually, if using bg-white/10, the dot might be redundant. 
-                    Let's Add a subtle glow dot anyway for consistency or remove if clean.
-                    User asked to "Keep the 'Active Dot' indicator or Highlight logic".
-                */}
-                {isActive && !isHovered && (
+                {/* 3. Active Dot (Absolute Positioned - DOES NOT AFFECT HEIGHT) */}
+                {isActive && (
                     <motion.div
-                        layoutId="active-nav-dot"
-                        className="absolute -bottom-1 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_white]"
+                        layoutId="active-nav-indicator"
+                        className="absolute bottom-1 w-1 h-1 bg-white rounded-full"
                     />
                 )}
             </motion.div>
