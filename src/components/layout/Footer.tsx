@@ -52,13 +52,13 @@ export function Footer() {
             <div className="border-t border-white/10 bg-black/50 backdrop-blur-sm p-8 flex flex-col md:flex-row justify-between items-end gap-8 relative z-10">
 
                 {/* Column 1: Identity (Mono Font) */}
-                <div className="font-mono text-sm space-y-2">
+                <div className="font-mono text-sm space-y-2 ml-15">
                     <div className="flex items-center gap-2 text-gray-400">
                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                         <span>SYSTEM STATUS: ONLINE</span>
                     </div>
-                    <div className="text-white font-bold text-xl tracking-tight">JOHN DOE</div>
-                    <div className="text-gray-500">ENGINEERING INTERFACE v2.0</div>
+                    <div className="text-white font-bold text-xl tracking-tight">Tayyab Hussain</div>
+                    <div className="text-gray-500">FULL STACK ENGINEER</div>
                 </div>
 
                 {/* Column 2: The Social Pills */}
@@ -86,7 +86,7 @@ export function Footer() {
                 </div>
 
                 {/* Column 3: Local Time (Mono) */}
-                <div className="font-mono text-right hidden md:block">
+                <div className="font-mono text-right mr-15 hidden md:block">
                     <div className="text-xs text-gray-500 uppercase mb-1">Local Time (PKT)</div>
                     <div className="text-3xl text-white font-light">{time}</div>
                 </div>
