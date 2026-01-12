@@ -1,7 +1,154 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
+
+// --- TERMINAL COMPONENT START ---
+const Terminal = () => {
+    const [input, setInput] = useState("");
+    const [output, setOutput] = useState<Array<{ type: string; content: React.ReactNode }>>([{
+        type: "info",
+        content: "Initializing portfolio kernel..."
+    }, {
+        type: "info",
+        content: "Loading modules... [OK]"
+    }, {
+        type: "success",
+        content: "Welcome, Guest. Type 'help' to view available commands."
+    }]);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Auto-scroll to bottom
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [output]);
+
+    // Focus input on click
+    const handleTerminalClick = () => {
+        inputRef.current?.focus();
+    };
+
+    const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            const cmd = input.trim().toLowerCase();
+            const newOutput = [...output, { type: "command", content: `visitor@portfolio:~$ ${input}` }];
+
+            switch (cmd) {
+                case "help":
+                    newOutput.push({
+                        type: "response",
+                        content: (
+                            <div className="space-y-1">
+                                <p>Available commands:</p>
+                                <div className="grid grid-cols-[100px_1fr] gap-2">
+                                    <span className="text-cyan-400">about</span><span>Who am I?</span>
+                                    <span className="text-cyan-400">projects</span><span>View my work</span>
+                                    <span className="text-cyan-400">skills</span><span>Tech stack</span>
+                                    <span className="text-cyan-400">contact</span><span>Get in touch</span>
+                                    <span className="text-cyan-400">clear</span><span>Clear terminal</span>
+                                </div>
+                            </div>
+                        ),
+                    });
+                    break;
+                case "about":
+                    newOutput.push({ type: "response", content: "I am a Full Stack Architect focused on high-performance digital infrastructure." });
+                    break;
+                case "projects":
+                    newOutput.push({ type: "response", content: "Check out the 'Projects' section below to see the FinTech Dashboard and AI Generator." });
+                    break;
+                case "skills":
+                    newOutput.push({ type: "response", content: "Next.js, TypeScript, Node.js, Postgres, Docker, AWS, Framer Motion." });
+                    break;
+                case "contact":
+                    newOutput.push({ type: "response", content: "Email: contact@johndoe.dev | GitHub: @johndoe" });
+                    break;
+                case "clear":
+                    setOutput([]);
+                    setInput("");
+                    return;
+                default:
+                    if (cmd !== "") {
+                        newOutput.push({ type: "error", content: `Command not found: ${cmd}. Type 'help' for list.` });
+                    }
+            }
+
+            setOutput(newOutput);
+            setInput("");
+        }
+    };
+
+    return (
+        <div
+            className="relative w-full max-w-lg 2xl:max-w-xl"
+            onClick={handleTerminalClick}
+        >
+            {/* Glow Effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20 pointer-events-none"></div>
+
+            <div className="relative rounded-xl bg-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs md:text-sm h-[320px] flex flex-col">
+                {/* Terminal Header */}
+                <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/5 shrink-0">
+                    <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                        <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                    </div>
+                    <div className="text-[10px] text-zinc-500">zsh — interactive</div>
+                </div>
+
+                {/* Scrollable Body */}
+                <div
+                    ref={scrollRef}
+                    className="flex-1 p-6 overflow-y-auto space-y-2 scrollbar-hide cursor-text"
+                >
+                    {output.map((line, i) => (
+                        <div key={i} className={`${line.type === "error" ? "text-red-400" :
+                                line.type === "command" ? "text-zinc-400 mt-4" :
+                                    line.type === "success" ? "text-emerald-400" :
+                                        "text-zinc-300"
+                            }`}>
+                            {line.content}
+                        </div>
+                    ))}
+
+                    {/* Input Line */}
+                    <div className="flex items-center gap-2 text-emerald-400 pt-2">
+                        <span>➜</span>
+                        <span className="text-blue-500">~</span>
+                        <div className="relative flex-1">
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={handleCommand}
+                                className="w-full bg-transparent outline-none text-zinc-100 placeholder-zinc-700"
+                                autoFocus
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Status Bar */}
+                <div className="bg-[#121212] border-t border-white/5 px-3 py-1.5 flex justify-between items-center text-[9px] text-zinc-600 font-medium shrink-0">
+                    <div className="flex gap-3">
+                        <span className="text-emerald-500">NORMAL</span>
+                        <span>main*</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <span>utf-8</span>
+                        <span>typescript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+// --- TERMINAL COMPONENT END ---
 
 const Hero = () => {
     return (
@@ -78,76 +225,7 @@ const Hero = () => {
 
                     {/* === RIGHT COLUMN: TERMINAL (Span 5) === */}
                     <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
-                        <div className="relative w-full max-w-lg 2xl:max-w-xl">
-
-                            {/* Glow Behind Terminal */}
-                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
-
-                            {/* Terminal Window */}
-                            <div className="relative rounded-xl bg-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs md:text-sm">
-
-                                {/* Terminal Header */}
-                                <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/5">
-                                    <div className="flex gap-1.5">
-                                        <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                                        <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                                    </div>
-                                    <div className="text-[10px] text-zinc-500">zsh — 80x24</div>
-                                </div>
-
-                                {/* Terminal Body */}
-                                <div className="p-6 space-y-4 min-h-[320px] text-zinc-300">
-
-                                    {/* Command 1 */}
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-emerald-500">➜</span>
-                                            <span className="text-blue-500">~</span>
-                                            <span className="text-zinc-100">npm install portfolio-v2</span>
-                                        </div>
-                                        <div className="text-zinc-500 mt-2 pl-4 border-l-2 border-zinc-800">
-                                            <p>added 142 packages in 452ms</p>
-                                            <p>found <span className="text-emerald-500">0 vulnerabilities</span></p>
-                                        </div>
-                                    </div>
-
-                                    {/* Command 2 */}
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-emerald-500">➜</span>
-                                            <span className="text-blue-500">~</span>
-                                            <span className="text-zinc-100">current_status</span>
-                                        </div>
-                                        <div className="text-emerald-400 mt-2 pl-4 border-l-2 border-zinc-800">
-                                            [●] Available for work
-                                        </div>
-                                    </div>
-
-                                    {/* Active Cursor */}
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-emerald-500">➜</span>
-                                            <span className="text-blue-500">~</span>
-                                            <span className="animate-pulse w-2.5 h-5 bg-zinc-500 block"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                {/* Terminal Footer */}
-                                <div className="bg-[#121212] border-t border-white/5 px-3 py-1.5 flex justify-between items-center text-[10px] text-zinc-600 font-medium">
-                                    <div className="flex gap-3">
-                                        <span className="text-blue-500">NORMAL</span>
-                                        <span>main*</span>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <span>utf-8</span>
-                                        <span>typescript</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Terminal />
                     </div>
 
                 </div>
