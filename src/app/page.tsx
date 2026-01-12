@@ -1,6 +1,5 @@
 import { Header } from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
-import { TechStack } from "@/components/home/TechStack";
 import { BentoGrid } from "@/components/home/BentoGrid";
 import { ProjectShowcase } from "@/components/home/ProjectShowcase";
 import { WorkflowTimeline } from "@/components/home/WorkflowTimeline";
@@ -15,7 +14,6 @@ export default function Home() {
       {/* Main Content Wrapper (The Curtain) */}
       <div className="relative z-10 bg-[#050505] shadow-2xl mb-[100vh]">
         <Hero />
-        <TechStack />
         <BentoGrid />
         <ProjectShowcase />
         <WorkflowTimeline />

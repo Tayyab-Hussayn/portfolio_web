@@ -64,7 +64,7 @@ const VisualCell = () => {
 
   return (
     <div className="relative w-full h-full overflow-hidden rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md hover:border-white/20 transition-colors duration-500 group">
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-violet-600/20 via-transparent to-transparent opacity-50 blur-2xl pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-indigo-600/20 to-transparent opacity-100 transition-opacity duration-500" />
       <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60 transition-transform duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
@@ -215,7 +215,7 @@ const PerfCell = () => {
 
 export function BentoGrid() {
   return (
-    <section className="py-24 bg-[#050505] relative overflow-hidden">
+    <section className="min-h-screen bg-[#050505] text-white pt-40 pb-24 px-4 relative overflow-hidden" id="bento">
 
       <Container className="max-w-6xl">
         <div className="mb-12">
