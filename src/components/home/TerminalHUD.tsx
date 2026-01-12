@@ -81,23 +81,7 @@ export function TerminalHUD() {
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-2xl bg-black/40 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden shadow-2xl font-mono text-sm md:text-base ring-1 ring-white/5"
-        >
-            {/* HUD Header */}
-            <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
-                <div className="flex items-center gap-2">
-                    <Terminal className="w-4 h-4 text-primary" />
-                    <span className="text-xs text-gray-400 font-medium tracking-wider">TERMINAL_HUD_V2.0</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-xs text-green-500/80">ONLINE</span>
-                </div>
-            </div>
+        <div className="w-full h-full flex flex-col font-mono text-sm md:text-base">
 
             {/* Terminal Output */}
             <div ref={scrollRef} className="h-64 md:h-80 overflow-y-auto p-4 space-y-2 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20">
@@ -146,6 +130,6 @@ export function TerminalHUD() {
                     </button>
                 ))}
             </div>
-        </motion.div>
+        </div>
     );
 }

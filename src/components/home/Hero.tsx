@@ -1,113 +1,159 @@
 "use client";
-
-import { Container } from "@/components/ui/Container";
-import Link from "next/link";
-import { TerminalHUD } from "./TerminalHUD";
+import React from "react";
+import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
 
-export function Hero() {
+const Hero = () => {
     return (
-        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505] py-20 pt-32 selection:bg-primary/30 selection:text-white perspective-1000">
+        <section className="relative w-full min-h-screen flex items-center justify-center bg-[#050505] overflow-hidden pt-32 lg:pt-20">
 
-            {/* 1. BACKGROUND LAYER: DEPTH GRID */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            {/* 1. BACKGROUND GRID (Full Screen) */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-            {/* Ambient background glow (Preserved) */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+            {/* 2. ARCHITECTURAL SIDE LINES (The Frame) */}
+            {/* Left Line */}
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-white/5 hidden 2xl:block"></div>
+            {/* Right Line */}
+            <div className="absolute right-6 top-0 bottom-0 w-px bg-white/5 hidden 2xl:block"></div>
 
-            <Container className="relative z-10 w-full px-4 md:px-6">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* 3. TECHNICAL MARGINALIA (Filling the Void) */}
+            {/* Left Data */}
+            <div className="absolute left-10 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-8">
+                <span className="text-[10px] text-zinc-700 font-mono -rotate-90 tracking-widest">EST. 2024</span>
+                <span className="text-[10px] text-zinc-700 font-mono -rotate-90 tracking-widest">V.2.0.0</span>
+            </div>
+            {/* Right Data */}
+            <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-8">
+                <span className="text-[10px] text-zinc-700 font-mono rotate-90 tracking-widest">SCROLL_DOWN</span>
+                <div className="w-px h-20 bg-zinc-800 mx-auto"></div>
+            </div>
 
-                    {/* 2. LEFT COLUMN: TYPOGRAPHY & INFO */}
-                    <div className="flex flex-col items-start gap-8 text-left">
 
-                        {/* System Online Badge (Preserved) */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
-                        >
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            {/* 4. MAIN CONTAINER (Wider Aperture) */}
+            <div className="w-full max-w-[90%] 2xl:max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+
+                {/* THE GRID: Spaced out 60% / 40% */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    {/* === LEFT COLUMN: TEXT (Span 7) === */}
+                    <div className="lg:col-span-7 flex flex-col items-start text-left">
+
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-zinc-400 font-mono mb-8 tracking-widest">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                            SYSTEM: ONLINE
+                        </div>
+
+                        {/* Headline: Scaled for Wide Screen */}
+                        <h1 className="text-5xl md:text-7xl 2xl:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
+                            <span className="text-white block">FUTURE</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-blue-500 block">
+                                ARCHITECT
                             </span>
-                            <span className="text-sm font-medium text-gray-300 tracking-wide">SYSTEM: ONLINE</span>
-                        </motion.div>
+                        </h1>
 
-                        {/* A. The "Architect" Text (Blueprint Style) */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 leading-none">
-                                <span className="text-white block">FUTURE</span>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 text-stroke-2 text-stroke-white opacity-40 hover:opacity-100 transition-opacity duration-500 block">
-                                    ARCHITECT
-                                </span>
-                            </h1>
-                        </motion.div>
+                        {/* Description */}
+                        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl leading-relaxed font-light mb-12 border-l border-zinc-800 pl-6">
+                            I design and build <span className="text-white font-medium">high-performance</span> digital infrastructure. Merging creative vision with engineering precision to define the next web.
+                        </p>
 
-                        {/* C. The Description & Socials */}
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="text-lg md:text-xl text-gray-400 font-mono max-w-xl leading-relaxed"
-                        >
-                            I design and build high-performance digital infrastructure.
-                            Merging creative vision with engineering precision to define the next web.
-                        </motion.p>
+                        {/* CTA Row */}
+                        <div className="flex flex-col sm:flex-row items-center gap-8 w-full sm:w-auto">
+                            <button className="group relative w-full sm:w-auto h-12 px-8 bg-white text-black rounded-full font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2">
+                                <span>Initialize Project</span>
+                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                            </button>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                            className="flex items-center gap-6 mt-2"
-                        >
-                            <Link href="/projects">
-                                <button className="h-12 px-8 rounded-full bg-white text-black font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-                                    Initialize Project
-                                </button>
-                            </Link>
+                            {/* Divider Line */}
+                            <div className="hidden sm:block h-8 w-px bg-zinc-700"></div>
 
-                            {/* Socials - Dimmed until hover */}
-                            <div className="flex gap-4 text-gray-500">
-                                <Link href="#" className="hover:text-white transition-colors cursor-pointer">
-                                    <Github className="w-6 h-6" />
-                                </Link>
-                                <Link href="#" className="hover:text-white transition-colors cursor-pointer">
-                                    <Linkedin className="w-6 h-6" />
-                                </Link>
-                                <Link href="#" className="hover:text-white transition-colors cursor-pointer">
-                                    <Twitter className="w-6 h-6" />
-                                </Link>
+                            {/* Socials */}
+                            <div className="flex gap-6 w-full sm:w-auto justify-center sm:justify-start">
+                                {[Github, Linkedin, Twitter].map((Icon, i) => (
+                                    <Icon key={i} className="w-6 h-6 text-zinc-500 hover:text-white transition-colors cursor-pointer hover:scale-110 duration-200" />
+                                ))}
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
 
-                    {/* 3. RIGHT COLUMN: 3D TERMINAL (THE HOLOGRAM) */}
-                    <div className="relative w-full flex justify-center lg:justify-end perspective-1000">
-                        {/* B. The 3D Terminal */}
-                        <motion.div
-                            initial={{ opacity: 0, rotateY: -30, x: 100 }}
-                            animate={{ opacity: 1, rotateY: -12, x: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="relative z-10 w-full max-w-lg bg-black/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 transform perspective-1000"
-                            style={{ transformStyle: "preserve-3d" }}
-                        >
-                            {/* Glossy reflection overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none rounded-xl" />
+                    {/* === RIGHT COLUMN: TERMINAL (Span 5) === */}
+                    <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
+                        <div className="relative w-full max-w-lg 2xl:max-w-xl">
 
-                            <TerminalHUD />
-                        </motion.div>
+                            {/* Glow Behind Terminal */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
+
+                            {/* Terminal Window */}
+                            <div className="relative rounded-xl bg-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs md:text-sm">
+
+                                {/* Terminal Header */}
+                                <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/5">
+                                    <div className="flex gap-1.5">
+                                        <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                                    </div>
+                                    <div className="text-[10px] text-zinc-500">zsh — 80x24</div>
+                                </div>
+
+                                {/* Terminal Body */}
+                                <div className="p-6 space-y-4 min-h-[320px] text-zinc-300">
+
+                                    {/* Command 1 */}
+                                    <div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-emerald-500">➜</span>
+                                            <span className="text-blue-500">~</span>
+                                            <span className="text-zinc-100">npm install portfolio-v2</span>
+                                        </div>
+                                        <div className="text-zinc-500 mt-2 pl-4 border-l-2 border-zinc-800">
+                                            <p>added 142 packages in 452ms</p>
+                                            <p>found <span className="text-emerald-500">0 vulnerabilities</span></p>
+                                        </div>
+                                    </div>
+
+                                    {/* Command 2 */}
+                                    <div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-emerald-500">➜</span>
+                                            <span className="text-blue-500">~</span>
+                                            <span className="text-zinc-100">current_status</span>
+                                        </div>
+                                        <div className="text-emerald-400 mt-2 pl-4 border-l-2 border-zinc-800">
+                                            [●] Available for work
+                                        </div>
+                                    </div>
+
+                                    {/* Active Cursor */}
+                                    <div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-emerald-500">➜</span>
+                                            <span className="text-blue-500">~</span>
+                                            <span className="animate-pulse w-2.5 h-5 bg-zinc-500 block"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {/* Terminal Footer */}
+                                <div className="bg-[#121212] border-t border-white/5 px-3 py-1.5 flex justify-between items-center text-[10px] text-zinc-600 font-medium">
+                                    <div className="flex gap-3">
+                                        <span className="text-blue-500">NORMAL</span>
+                                        <span>main*</span>
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <span>utf-8</span>
+                                        <span>typescript</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-            </Container>
+            </div>
         </section>
     );
-}
+};
+
+export default Hero;
