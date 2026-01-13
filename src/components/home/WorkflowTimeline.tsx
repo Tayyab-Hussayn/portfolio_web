@@ -72,6 +72,8 @@ export function WorkflowTimeline() {
 
     return (
         <section className="relative bg-[#050505] py-32">
+            {/* === THE SEPARATOR LINE === */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             <div className="container mx-auto px-4 md:px-6 max-w-4xl">
                 {/* Section Header */}
                 <div className="mb-20 text-center">

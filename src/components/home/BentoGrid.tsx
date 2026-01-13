@@ -217,6 +217,9 @@ export function BentoGrid() {
   return (
     <section className="min-h-screen bg-[#050505] text-white pt-40 pb-24 px-4 relative overflow-hidden" id="bento">
 
+      {/* === THE SEPARATOR LINE === */}
+      <div className="absolute top-10 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
       <Container className="max-w-6xl">
         <div className="mb-12">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Full-Stack Ecosystem</h2>
