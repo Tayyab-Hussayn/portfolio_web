@@ -15,10 +15,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             lenisRef.current?.lenis?.raf(time * 1000);
         };
 
-        // Bind GSAP Ticker to Lenis for perfect synchronization
+        // 1. Bind GSAP Ticker to Lenis
         gsap.ticker.add(update);
 
-        // Disable GSAP's default lag smoothing to prevent conflicts
+        // 2. Disable GSAP lag smoothing (critical for scroll sync)
         gsap.ticker.lagSmoothing(0);
 
         return () => {
@@ -30,10 +30,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         <ReactLenis
             ref={lenisRef}
             root
+            autoRaf={false} /* CRITICAL FIX: Stops the double-loop "hard" feeling */
             options={{
-                lerp: 0.1, // The "Heaviness" of the scroll (0.1 is standard butter)
-                duration: 1.5,
+                lerp: 0.12, // Slightly lighter than 0.1
+                duration: 1.2,
+                orientation: "vertical",
+                gestureOrientation: "vertical",
                 smoothWheel: true,
+                wheelMultiplier: 2, // Ensure 1:1 scroll ratio
+                touchMultiplier: 3, // Better touch response
             }}
         >
             {children as any}
