@@ -81,25 +81,55 @@ const ProjectDetail = () => {
 
             <main className="relative z-10 bg-[#050505] min-h-screen text-white mb-[50vh] md:mb-[100vh] shadow-2xl border-b border-white/10">
 
-                {/* 1. CINEMATIC HERO */}
-                <section className="relative min-h-[80vh] flex items-end pt-40 pb-20 px-6 overflow-hidden bg-[#050505]">
-                    {/* Background Texture */}
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+                {/* 1. HERO SECTION */}
+                <div className="relative min-h-[90vh] flex flex-col justify-end pt-40 px-6 border-b border-white/10 overflow-hidden">
 
-                    <div className="max-w-7xl mx-auto w-full relative z-10">
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6 uppercase tracking-widest">
-                                Case Study
+                    {/* Background Glow (The Atmosphere) */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none" />
+                    <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-20" />
+
+                    <div className="max-w-7xl mx-auto w-full relative z-10 mb-20">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-8 uppercase tracking-widest">
+                                Case Study 01
                             </div>
-                            <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-none">
+                            <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-8 leading-none text-white">
                                 {project.title}
                             </h1>
-                            <p className="text-xl text-zinc-400 max-w-2xl border-l-2 border-blue-500 pl-6">
+                            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl leading-relaxed">
                                 {project.tagline}
                             </p>
                         </motion.div>
                     </div>
-                </section>
+
+                    {/* THE VISUAL PROOF (Laptop/Screen Placeholder) */}
+                    <div className="max-w-7xl mx-auto w-full relative z-10 translate-y-12">
+                        <div className="aspect-video w-full rounded-t-3xl bg-[#0a0a0a] border-t border-x border-white/10 shadow-2xl overflow-hidden relative group">
+
+                            {/* CSS Grid Pattern */}
+                            <div
+                                className="absolute inset-0 opacity-20"
+                                style={{
+                                    backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`,
+                                    backgroundSize: '40px 40px'
+                                }}
+                            />
+
+                            {/* Scanline Animation */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent animate-scan" />
+
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-zinc-600 font-mono text-sm tracking-widest uppercase border border-zinc-800 px-4 py-2 rounded-full bg-black/50 backdrop-blur-md">
+                                    System Interface Preview
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 {/* 2. STICKY SPEC BAR */}
                 <div className="sticky top-6 z-40 px-4 md:px-0">
@@ -142,12 +172,16 @@ const ProjectDetail = () => {
                             <p className="text-zinc-400 text-lg leading-relaxed">{project.solution}</p>
                         </section>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-2 gap-4 pt-8">
-                            {project.stats.map((stat: any, i: number) => (
-                                <div key={i} className="p-6 rounded-2xl bg-zinc-900/50 border border-white/5">
-                                    <div className="text-4xl font-black text-white mb-1">{stat.value}</div>
-                                    <div className="text-xs text-zinc-500 uppercase tracking-widest">{stat.label}</div>
+                        {/* Updated Stats Grid */}
+                        <div className="grid grid-cols-2 gap-4 pt-12">
+                            {project.stats?.map((stat: any, i: number) => (
+                                <div key={i} className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors border-l-2 border-l-blue-500">
+                                    <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">
+                                        {stat.value}
+                                    </div>
+                                    <div className="text-xs text-zinc-500 uppercase tracking-widest font-mono">
+                                        {stat.label}
+                                    </div>
                                 </div>
                             ))}
                         </div>
