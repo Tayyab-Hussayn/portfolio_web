@@ -18,9 +18,17 @@ const Manifesto = () => {
     return (
         <section
             ref={container}
-            className="min-h-[60vh] flex items-center justify-center bg-[#050505] py-32 px-6 relative z-10"
+            className="min-h-[50vh] flex items-center justify-center bg-[#050505] py-32 px-6 relative z-10 overflow-hidden"
         >
-            <div className="max-w-4xl mx-auto">
+            {/* 1. BACKGROUND GRID (The Texture) */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+            {/* 2. MAIN CONTAINER (With Side Borders) */}
+            <div className="max-w-4xl mx-auto relative z-20">
+                {/* Architectural Side Lines */}
+                <div className="absolute -left-12 top-0 bottom-0 w-px bg-white/5 hidden md:block"></div>
+                <div className="absolute -right-12 top-0 bottom-0 w-px bg-white/5 hidden md:block"></div>
+
                 <p className="flex flex-wrap text-2xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
                     {words.map((word, i) => {
                         // Calculate relative timing for each word
