@@ -15,6 +15,7 @@ const projects = [
     {
         id: "01",
         title: "FinTech Dashboard Core",
+        slug: "fintech-core",
         category: "System Architecture",
         description: "A high-performance financial analytics engine processing 50k+ transactions per second. Built with real-time WebSockets and optimized SQL queries.",
         stack: ["Next.js", "TypeScript", "PostgreSQL", "D3.js"],
@@ -24,6 +25,7 @@ const projects = [
     {
         id: "02",
         title: "E-Commerce Headless API",
+        slug: "ecommerce-api",
         category: "Backend Engineering",
         description: "A scalable headless architecture serving 3 platforms (Web, iOS, Android). Features Redis caching and Stripe integration with zero downtime.",
         stack: ["Node.js", "GraphQL", "Redis", "Docker"],
@@ -33,6 +35,7 @@ const projects = [
     {
         id: "03",
         title: "AI Content Generator",
+        slug: "ai-content-generator",
         category: "Full Stack AI",
         description: "SaaS platform leveraging OpenAI API. Features stream-based responses, credit systems, and multi-tenant authentication.",
         stack: ["React", "Python", "FastAPI", "Stripe"],
@@ -149,7 +152,7 @@ export function ProjectShowcase() {
                                 </div>
 
                                 <Link
-                                    href="/projects/case-study"
+                                    href={`/projects/${project.slug}`}
                                     className="inline-flex items-center gap-2 text-white font-medium group w-fit cursor-pointer"
                                 >
                                     <span className="border-b border-white/30 pb-1 group-hover:border-white transition-colors">View Case Study</span>
