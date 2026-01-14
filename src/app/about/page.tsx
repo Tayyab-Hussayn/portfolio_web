@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import Image from "next/image";
-import { Code, Users, Rocket, Heart } from "lucide-react";
+import { Code, Users, Rocket, Heart, LucideIcon } from "lucide-react";
 
 export const metadata = {
     title: "About Me | Full-Stack Web Developer",
@@ -41,10 +41,10 @@ export default function AboutPage() {
                                 Crafting code since <span className="text-primary">2018</span>
                             </h2>
                             <p className="text-gray-600 leading-relaxed">
-                                Hello! I'm a full-stack developer with a deep passion for modern web technologies. My journey began with simple HTML pages and has evolved into architecting complex, scalable applications for international clients.
+                                Hello! I&apos;m a full-stack developer with a deep passion for modern web technologies. My journey began with simple HTML pages and has evolved into architecting complex, scalable applications for international clients.
                             </p>
                             <p className="text-gray-600 leading-relaxed">
-                                I believe that great software is more than just code—it's about solving real-world problems with elegant solutions. Whether it's a high-performance e-commerce platform or an AI-powered SaaS, I bring the same level of dedication and craftsmanship to every project.
+                                I believe that great software is more than just code—it&apos;s about solving real-world problems with elegant solutions. Whether it&apos;s a high-performance e-commerce platform or an AI-powered SaaS, I bring the same level of dedication and craftsmanship to every project.
                             </p>
 
                             <div className="grid grid-cols-2 gap-6 pt-4">
@@ -76,7 +76,7 @@ export default function AboutPage() {
                             { icon: Users, title: "User-Centric", desc: "I build with the end-user in mind, ensuring intuitive experiences." },
                             { icon: Rocket, title: "Performance", desc: "Speed is a feature. I optimize for sub-second load times." },
                             { icon: Heart, title: "Committment", desc: "Dedicated to project success even after the launch." }
-                        ].map((item, idx) => (
+                        ].map((item: { icon: LucideIcon; title: string; desc: string }, idx) => (
                             <div key={idx} className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
                                 <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
                                     <item.icon size={32} />

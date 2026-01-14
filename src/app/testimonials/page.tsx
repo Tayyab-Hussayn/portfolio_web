@@ -84,7 +84,7 @@ export default function TestimonialsPage() {
                                         ))}
                                     </div>
                                     <Quote className="text-primary/20 mb-2" size={32} />
-                                    <p className="text-gray-700 italic leading-relaxed">"{t.content}"</p>
+                                    <p className="text-gray-700 italic leading-relaxed">&quot;{t.content}&quot;</p>
                                 </div>
 
                                 <div className="mt-auto flex items-center gap-4 pt-6 border-t border-gray-100">
