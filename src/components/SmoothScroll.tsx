@@ -11,7 +11,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     useEffect(() => {
         const update = (time: number) => {
-            // @ts-ignore
+            // @ts-expect-error - lenis types are incompatible with recent React versions
             lenisRef.current?.lenis?.raf(time * 1000);
         };
 
@@ -41,6 +41,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
                 touchMultiplier: 3, // Better touch response
             }}
         >
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             {children as any}
         </ReactLenis>
     );

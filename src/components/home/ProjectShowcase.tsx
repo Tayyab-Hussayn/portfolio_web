@@ -149,7 +149,7 @@ export function ProjectShowcase() {
                                 </div>
 
                                 <Link
-                                    href="#"
+                                    href="/projects/case-study"
                                     className="inline-flex items-center gap-2 text-white font-medium group w-fit cursor-pointer"
                                 >
                                     <span className="border-b border-white/30 pb-1 group-hover:border-white transition-colors">View Case Study</span>

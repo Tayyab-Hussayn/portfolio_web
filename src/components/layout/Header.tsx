@@ -58,7 +58,7 @@ export function Header() {
                     // Changes: h-10 (Height match), Text-sm (Font match), Shadow-lg (Depth)
                     className="group flex items-center gap-2 h-10 px-6 bg-white text-black rounded-full font-semibold text-sm transition-all duration-300 hover:bg-zinc-200 hover:scale-105 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                 >
-                    <span>Let's Talk</span>
+                    <span>Let&apos;s Talk</span>
                     {/* Arrow: Stays simple */}
                     <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>

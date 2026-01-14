@@ -14,8 +14,8 @@ export function ContactCTA() {
                         Ready to Build Something Amazing?
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-lg">
-                        Let's collaborate to turn your vision into a high-performance digital reality.
-                        I'm currently available for freelance projects and consulting.
+                        Let&apos;s collaborate to turn your vision into a high-performance digital reality.
+                        I&apos;m currently available for freelance projects and consulting.
                     </p>
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-semibold text-lg px-8 h-12" asChild>
                         <Link href="/contact">

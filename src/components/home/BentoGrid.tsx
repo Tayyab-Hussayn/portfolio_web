@@ -105,7 +105,7 @@ const LogicCell = () => {
       <div className="flex-1 p-6 font-mono text-sm md:text-base text-gray-300">
         <span className="text-purple-400">async function</span> <span className="text-yellow-300">init</span>() {"{"}
         <div ref={codeRef} className="mt-2 pl-4 text-green-400 whitespace-pre-wrap min-h-[4rem]">
-                    // Initializing...
+          {/* // Initializing... */}
         </div>
         {"}"}
         <div className="mt-4 animate-pulse w-2 h-4 bg-gray-500/50" />
